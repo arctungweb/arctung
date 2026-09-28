@@ -1,0 +1,103 @@
+---
+import { SITE } from '../config';
+---
+
+<div id="inquiry-form-wrap" data-endpoint={SITE.inquiryEndpoint}>
+  <form id="inquiry-form" novalidate class="hairline rounded-sm bg-steel-900 p-6 sm:p-8">
+    <p class="font-mono text-[0.72rem] uppercase tracking-[0.2em] text-tung-500">
+      RFQ — response within 24 h, quotes valid 7 days
+    </p>
+
+    <div class="mt-6 grid gap-5 sm:grid-cols-2">
+      <label class="block">
+        <span class="mb-1.5 block font-mono text-[0.72rem] uppercase tracking-widest text-tung-300">Company *</span>
+        <input type="text" name="company" required autocomplete="organization"
+          class="w-full border border-steel-700 bg-steel-950 px-3.5 py-2.5 text-tung-100 placeholder:text-tung-700 focus:border-copper-400 focus:outline-none" />
+      </label>
+      <label class="block">
+        <span class="mb-1.5 block font-mono text-[0.72rem] uppercase tracking-widest text-tung-300">Business email *</span>
+        <input type="email" name="email" required autocomplete="email"
+          class="w-full border border-steel-700 bg-steel-950 px-3.5 py-2.5 text-tung-100 placeholder:text-tung-700 focus:border-copper-400 focus:outline-none" />
+      </label>
+      <label class="block">
+        <span class="mb-1.5 block font-mono text-[0.72rem] uppercase tracking-widest text-tung-300">Country</span>
+        <input type="text" name="country" autocomplete="country-name"
+          class="w-full border border-steel-700 bg-steel-950 px-3.5 py-2.5 text-tung-100 placeholder:text-tung-700 focus:border-copper-400 focus:outline-none" />
+      </label>
+      <label class="block">
+        <span class="mb-1.5 block font-mono text-[0.72rem] uppercase tracking-widest text-tung-300">Application</span>
+        <select name="application"
+          class="w-full border border-steel-700 bg-steel-950 px-3.5 py-2.5 text-tung-100 focus:border-copper-400 focus:outline-none">
+          <option value="">Select…</option>
+          <option>Seam welding wheels</option>
+          <option>Spot welding electrodes</option>
+          <option>EDM electrodes</option>
+          <option>Custom / other</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="hidden" aria-hidden="true">
+      <label>Leave this field empty
+        <input type="text" name="website" tabindex="-1" autocomplete="off" />
+      </label>
+    </div>
+
+    <label class="mt-5 block">
+      <span class="mb-1.5 block font-mono text-[0.72rem] uppercase tracking-widest text-tung-300">Alloy, dimensions &amp; quantity *</span>
+      <textarea name="details" rows="4" required
+        placeholder="e.g. CuW75 wheel, OD 300 × 20 mm, bore Ø50 H7, R profile, 6 pcs/month"
+        class="w-full border border-steel-700 bg-steel-950 px-3.5 py-2.5 text-tung-100 placeholder:text-tung-700 focus:border-copper-400 focus:outline-none"></textarea>
+    </label>
+
+    <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+      <button type="submit"
+        class="inline-flex items-center justify-center gap-2 bg-copper-500 px-6 py-3 font-mono text-[0.8rem] uppercase tracking-widest text-steel-950 transition-colors hover:bg-copper-400 disabled:cursor-not-allowed disabled:opacity-50">
+        Send inquiry
+      </button>
+      <p class="font-mono text-[0.72rem] uppercase tracking-widest text-tung-500">
+        or email <a class="text-copper-300 hover:underline" href={`mailto:${SITE.email}`}>{SITE.email}</a>
+      </p>
+    </div>
+  </form>
+
+  <div id="inquiry-success" class="hairline hidden rounded-sm bg-steel-900 p-8 text-center">
+    <p class="font-mono text-xs uppercase tracking-[0.25em] text-copper-400">Received</p>
+    <p class="mt-3 font-display text-2xl font-bold text-tung-50">Thanks — your RFQ is in.</p>
+    <p class="mt-3 text-tung-300">We reply within 24 hours (Mon–Fri, UTC+8). Check your inbox for a confirmation.</p>
+  </div>
+
+  <p id="inquiry-error" class="mt-3 hidden font-mono text-sm text-copper-300">
+    Submission failed — please email us directly at {SITE.email}.
+  </p>
+</div>
+
+<script>
+  const wrap = document.getElementById('inquiry-form-wrap') as HTMLElement | null;
+  const form = document.getElementById('inquiry-form') as HTMLFormElement | null;
+  const success = document.getElementById('inquiry-success');
+  const error = document.getElementById('inquiry-error');
+  const ENDPOINT = wrap?.dataset.endpoint ?? '';
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!form.reportValidity()) return;
+
+    const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+    if (btn) btn.disabled = true;
+
+    try {
+      const res = await fetch(ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(Object.fromEntries(new FormData(form)))
+      });
+      if (!res.ok) throw new Error(String(res.status));
+      form.classList.add('hidden');
+      success?.classList.remove('hidden');
+    } catch {
+      error?.classList.remove('hidden');
+      if (btn) btn.disabled = false;
+    }
+  });
+</script>

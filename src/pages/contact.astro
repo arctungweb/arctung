@@ -1,0 +1,75 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionHead from '../components/SectionHead.astro';
+import InquiryForm from '../components/InquiryForm.astro';
+import { SITE } from '../config';
+---
+
+<Base
+  title="Contact & RFQ | ArcTung Tungsten-Copper Electrode Wheels"
+  description="Request a quote for tungsten-copper electrode wheels, rods, threaded electrodes or custom parts. Response within 24 hours, quotes valid 7 days. FOB Shenzhen, worldwide shipping."
+>
+  <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-24">
+    <SectionHead
+      kicker="RFQ"
+      title="Tell us the alloy and the drawing"
+      lead="Five fields, 30 seconds. We answer within 24 hours (Mon–Fri, UTC+8) with a firm quote held for 7 days."
+    />
+
+    <div class="grid gap-10 lg:grid-cols-5">
+      <div class="lg:col-span-3">
+        <InquiryForm />
+      </div>
+
+      <aside class="lg:col-span-2">
+        <div class="hairline rounded-sm bg-steel-900 p-6">
+          <p class="font-mono text-[0.72rem] uppercase tracking-[0.2em] text-tung-500">Direct</p>
+          <p class="mt-3 font-display text-lg font-bold text-tung-50">{SITE.email}</p>
+          <p class="mt-1 text-sm text-tung-300">Attach drawings in STEP, DWG, DXF or PDF.</p>
+
+          <div class="mt-7 rule-tick"></div>
+
+          <dl class="mt-7 space-y-5">
+            {[
+              ['Response time', 'Within 24 hours, business days'],
+              ['Quote validity', '7 days (tungsten pricing follows the market)'],
+              ['Lead time', `Standard ${SITE.leadStandard} · custom ${SITE.leadCustom} · samples ${SITE.leadSample}`],
+              ['Payment', 'T/T 30% deposit + 70% before shipment'],
+              ['Shipping', `${SITE.port} · CIF / DAP on request`]
+            ].map(([k, v]) => (
+              <div>
+                <dt class="font-mono text-[0.72rem] uppercase tracking-widest text-tung-500">{k}</dt>
+                <dd class="mt-1 text-[0.95rem] text-tung-200">{v}</dd>
+              </div>
+            ))}
+          </dl>
+
+          <div class="mt-7 rule-tick"></div>
+
+          <p class="mt-7 font-mono text-[0.72rem] uppercase tracking-widest text-tung-500">Sample policy</p>
+          <p class="mt-2 text-sm leading-relaxed text-tung-300">
+            Paid samples (from $80 per piece, by size) with freight collect. Sample fees are fully credited
+            against your first order of $1,000 or more.
+          </p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="border-t border-steel-700/60 bg-steel-900">
+    <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6">
+      <div class="grid gap-8 sm:grid-cols-3">
+        {[
+          ['New to tungsten-copper?', 'Compare W/Cu 75/25 vs 70/30 — conductivity, hardness, and when to choose each grade.', '/faq'],
+          ['Need credentials?', 'High-Tech Enterprise certificate, equipment list and QC flow, in English, on request.', '/factory'],
+          ['Custom geometry?', 'Send a drawing — OD to 400 mm, tolerances to runout 0.02 mm, profiled edges to spec.', '/products/custom-parts']
+        ].map(([t, d, href]) => (
+          <a href={href} class="group hairline block rounded-sm bg-steel-950 p-6 transition-colors hover:border-copper-500/60">
+            <p class="font-display text-lg font-bold text-tung-50 group-hover:text-copper-300">{t}</p>
+            <p class="mt-2 text-sm leading-relaxed text-tung-300">{d}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>

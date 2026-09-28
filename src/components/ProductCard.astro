@@ -1,0 +1,39 @@
+---
+import { Image } from 'astro:assets';
+import type { Product } from '../data/products';
+
+interface Props {
+  product: Product;
+}
+
+const { product } = Astro.props;
+---
+
+<a href={`/products/${product.slug}`} class="group hairline block overflow-hidden rounded-sm bg-steel-900 transition-all hover:border-copper-500/60">
+  <div class="relative overflow-hidden">
+    <Image
+      src={product.image}
+      alt={product.imageAlt}
+      width={720}
+      height={420}
+      class="h-48 w-full object-cover transition-transform duration-700 group-hover:scale-105"
+      loading="lazy"
+    />
+    <span class="absolute left-4 top-4 bg-steel-950/85 px-2.5 py-1 font-mono text-[0.68rem] uppercase tracking-[0.16em] text-copper-300">
+      {product.badge}
+    </span>
+  </div>
+  <div class="p-5 sm:p-6">
+    <p class="font-mono text-[0.72rem] uppercase tracking-[0.18em] text-tung-500">{product.alloy}</p>
+    <h3 class="mt-2 font-display text-xl font-bold tracking-tight text-tung-50 transition-colors group-hover:text-copper-300">
+      {product.name}
+    </h3>
+    <p class="mt-2 text-sm leading-relaxed text-tung-300">{product.tagline}</p>
+    <p class="mt-4 flex items-center gap-2 font-mono text-[0.75rem] uppercase tracking-widest text-copper-400">
+      View specs
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" class="transition-transform group-hover:translate-x-1">
+        <path d="M5 12h14M13 6l6 6-6 6"/>
+      </svg>
+    </p>
+  </div>
+</a>

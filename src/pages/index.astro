@@ -1,0 +1,203 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import SectionHead from '../components/SectionHead.astro';
+import ProductCard from '../components/ProductCard.astro';
+import { SITE } from '../config';
+import { products } from '../data/products';
+import { applications } from '../data/applications';
+import heroImg from '../assets/factory/03-sintering-workshop.png';
+import factoryImg from '../assets/factory/10-production-floor.jpg';
+---
+
+<Base
+  title="Tungsten-Copper Electrode Wheels | No MOQ, 10–14 Day Lead Time"
+  description="Factory-direct W/Cu 75/25 and W/Cu 70/30 electrode wheels up to 400 mm OD. No minimum order, 10–14 day standard lead time, tolerances to runout 0.02 mm. FOB Shenzhen, shipped worldwide."
+>
+  <!-- HERO -->
+  <section class="relative overflow-hidden border-b border-steel-700/60">
+    <div class="absolute inset-0">
+      <Image src={heroImg} alt="Tungsten-copper sintering workshop" width={1600} height={900} class="h-full w-full object-cover" loading="eager" />
+      <div class="absolute inset-0 bg-gradient-to-r from-steel-950/95 via-steel-950/80 to-steel-950/45"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-steel-950 via-transparent to-transparent"></div>
+    </div>
+
+    <div class="relative mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:py-36">
+      <p class="rise flex items-center gap-3 font-mono text-xs uppercase tracking-[0.3em] text-copper-300">
+        <span class="inline-block h-px w-10 bg-copper-400"></span>
+        W/Cu 75/25 · W/Cu 70/30 · Factory-direct
+      </p>
+      <h1 class="rise d1 mt-6 max-w-4xl font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-tung-50 sm:text-6xl">
+        Electrode wheels,
+        <span class="text-copper-400">shipped in days</span> — not weeks.
+      </h1>
+      <p class="rise d2 mt-6 max-w-2xl text-lg leading-relaxed text-tung-300">
+        Tungsten-copper seam-welding wheels up to OD 400 mm, machined to 0.02 mm runout and shipped in
+        {SITE.leadStandard}. No minimum order. Custom profiles in {SITE.leadCustom}.
+      </p>
+
+      <div class="rise d3 mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
+        <a href="/contact" class="inline-flex items-center justify-center gap-2 bg-copper-500 px-7 py-3.5 font-mono text-sm uppercase tracking-widest text-steel-950 transition-colors hover:bg-copper-400">
+          Request a quote
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#products" class="inline-flex items-center justify-center gap-2 border border-steel-600 px-7 py-3.5 font-mono text-sm uppercase tracking-widest text-tung-200 transition-colors hover:border-copper-500 hover:text-copper-300">
+          Browse alloys
+        </a>
+      </div>
+
+      <div class="rise d4 mt-12 flex flex-wrap gap-2.5">
+        {['No MOQ', 'Samples ≤ 10 days', 'FOB Shenzhen / Nansha', 'Batch traceability', 'T/T 30% deposit'].map((chip) => (
+          <span class="border border-steel-700 bg-steel-950/60 px-3.5 py-1.5 font-mono text-[0.72rem] uppercase tracking-widest text-tung-300">
+            {chip}
+          </span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- NUMBERS STRIP -->
+  <section class="border-b border-steel-700/60 bg-steel-900">
+    <div class="mx-auto grid max-w-7xl grid-cols-2 gap-px sm:grid-cols-4">
+      {[
+        { v: '10–14', u: 'days', k: 'Standard lead time' },
+        { v: '400', u: 'mm max OD', k: '× 100 mm thickness' },
+        { v: '80,000', u: 'kg / month', k: 'Factory capacity' },
+        { v: '21', u: 'years', k: 'Making tungsten-copper' }
+      ].map((s, i) => (
+        <div class={`rise d${i + 1} bg-steel-900 px-6 py-8 ${i > 0 ? 'border-l border-steel-700/60' : ''}`}>
+          <p class="font-display text-3xl font-extrabold text-tung-50 sm:text-4xl">
+            {s.v}<span class="ml-2 font-mono text-xs font-normal uppercase tracking-widest text-copper-400">{s.u}</span>
+          </p>
+          <p class="mt-2 font-mono text-[0.72rem] uppercase tracking-widest text-tung-500">{s.k}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section id="products" class="mx-auto max-w-7xl scroll-mt-24 px-4 py-20 sm:px-6 sm:py-24">
+    <SectionHead
+      kicker="Product Line"
+      title="Five ways to buy tungsten-copper, zero minimums"
+      lead="Two electrode-wheel grades machined to your drawing, plus rods, threaded electrodes and custom parts — all from one factory floor in Guangdong."
+    />
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {products.map((p) => <ProductCard product={p} />)}
+    </div>
+  </section>
+
+  <!-- APPLICATIONS -->
+  <section id="applications" class="border-y border-steel-700/60 bg-steel-900">
+    <div class="mx-auto max-w-7xl scroll-mt-24 px-4 py-20 sm:px-6 sm:py-24">
+      <SectionHead
+        kicker="By Application"
+        title="Built for the line it runs on"
+        lead="Four application areas, each with its own failure modes — and the tungsten-copper grade that solves them."
+      />
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {applications.map((a) => (
+          <a href={`/applications/${a.slug}`} class="group hairline block overflow-hidden rounded-sm bg-steel-950 transition-all hover:border-copper-500/60">
+            <div class="relative overflow-hidden">
+              <Image src={a.image} alt={a.imageAlt} width={520} height={300} class="h-36 w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+            </div>
+            <div class="p-5">
+              <h3 class="font-display text-lg font-bold tracking-tight text-tung-50 transition-colors group-hover:text-copper-300">{a.shortName}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-tung-300">{a.tagline}</p>
+              <p class="mt-4 flex items-center gap-2 font-mono text-[0.75rem] uppercase tracking-widest text-copper-400">
+                Explore
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" class="transition-transform group-hover:translate-x-1">
+                  <path d="M5 12h14M13 6l6 6-6 6"/>
+                </svg>
+              </p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY / COMPARISON -->
+  <section class="border-b border-steel-700/60 bg-steel-900">
+    <div class="mx-auto grid max-w-7xl gap-12 px-4 py-20 sm:px-6 sm:py-24 lg:grid-cols-2 lg:items-center">
+      <div>
+        <SectionHead
+          kicker="Why buyers switch"
+          title="Western distributors quote 4–12 weeks. We ship in 10–14 days."
+          lead="Same infiltrated-tungsten metallurgy, comparable pricing — the difference is response time. RFQs answered within 24 hours, quotes honored for 7 days, English documentation on every shipment."
+        />
+        <ul class="space-y-4">
+          {[
+            ['No MOQ', 'Order one wheel or one hundred. Special shapes quoted per part, no hidden tooling minimums.'],
+            ['Machined to drawing', 'OD 0/+0.5 mm, bore H7, runout 0.02 mm. Flat, beveled, R-profile or knurled edges.'],
+            ['Batch traceability', 'Composition, density and hardness checks per batch; inspection records ship with the order.'],
+            ['Compliance-friendly', 'We supply sub-80% tungsten alloys only — outside dual-use export controls, routine customs.']
+          ].map(([t, d]) => (
+            <li class="flex gap-4">
+              <span class="mt-1 inline-block h-2.5 w-2.5 shrink-0 rotate-45 bg-copper-500"></span>
+              <div>
+                <p class="font-display text-lg font-semibold text-tung-50">{t}</p>
+                <p class="mt-1 text-[0.95rem] leading-relaxed text-tung-300">{d}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <figure class="hairline overflow-hidden rounded-sm">
+        <Image src={factoryImg} alt="Production floor of the tungsten-copper factory" width={900} height={675} class="h-full w-full object-cover" loading="lazy" />
+        <figcaption class="border-t border-steel-700/60 bg-steel-850 px-4 py-3 font-mono text-[0.72rem] uppercase tracking-[0.18em] text-tung-500">
+          Production floor · Heyuan, Guangdong
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- FACTORY CRED -->
+  <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-24">
+    <SectionHead
+      kicker="The factory behind the brand"
+      title="A National High-Tech Enterprise, 21 years deep in tungsten-copper"
+      lead="ArcTung is the export channel of a 2005-era manufacturer in Heyuan, Guangdong — not a trading desk. We are on the floor when your wheels are being machined."
+    />
+    <div class="grid gap-px overflow-hidden rounded-sm border border-steel-700/60 bg-steel-700/60 sm:grid-cols-2 lg:grid-cols-4">
+      {[
+        ['National High-Tech Enterprise', 'Certified 2025 batch, valid through 2028'],
+        ['Guangdong "Specialized & Sophisticated"', 'Re-approved Feb 2026, valid through 2029'],
+        ['88 patents', 'Including tungsten-cupra forging and machining IP'],
+        ['Exported worldwide', 'Germany, Japan, Korea, Singapore and beyond']
+      ].map(([t, d]) => (
+        <div class="bg-steel-900 px-6 py-8">
+          <p class="font-mono text-[0.72rem] uppercase tracking-[0.18em] text-copper-400">Verified</p>
+          <p class="mt-3 font-display text-lg font-bold leading-snug text-tung-50">{t}</p>
+          <p class="mt-2 text-sm leading-relaxed text-tung-300">{d}</p>
+        </div>
+      ))}
+    </div>
+    <p class="mt-8">
+      <a href="/factory" class="inline-flex items-center gap-2 font-mono text-sm uppercase tracking-widest text-copper-300 hover:text-copper-400">
+        Tour the factory
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </p>
+  </section>
+
+  <!-- CTA -->
+  <section class="relative overflow-hidden border-t border-steel-700/60">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,var(--color-copper-500)_0%,transparent_55%)] opacity-20"></div>
+    <div class="relative mx-auto max-w-7xl px-4 py-20 text-center sm:px-6 sm:py-28">
+      <p class="rise font-mono text-xs uppercase tracking-[0.3em] text-copper-400">RFQ · response in 24 h</p>
+      <h2 class="rise d1 mx-auto mt-5 max-w-3xl font-display text-3xl font-extrabold tracking-tight text-tung-50 sm:text-5xl">
+        Send a drawing. Get a quote tomorrow.
+      </h2>
+      <p class="rise d2 mx-auto mt-5 max-w-xl text-tung-300">
+        Alloy, dimensions, quantity — that is all we need. Quotes held for 7 days, firm pricing.
+      </p>
+      <div class="rise d3 mt-8">
+        <a href="/contact" class="inline-flex items-center justify-center gap-2 bg-copper-500 px-8 py-4 font-mono text-sm uppercase tracking-widest text-steel-950 transition-colors hover:bg-copper-400">
+          Start your RFQ
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>

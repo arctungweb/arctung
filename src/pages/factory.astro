@@ -1,0 +1,201 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import SectionHead from '../components/SectionHead.astro';
+import { SITE } from '../config';
+import imgBuilding from '../assets/factory/04-factory-building.png';
+import imgInfiltration from '../assets/factory/01-infiltration-furnace.png';
+import imgSintering from '../assets/factory/02-vacuum-sintering-furnace.png';
+import imgControl from '../assets/factory/05-furnace-control-cabinets.png';
+import imgWarehouse from '../assets/factory/06-warehouse-racking.png';
+import imgDock from '../assets/factory/08-loading-dock.jpg';
+import imgFloor from '../assets/factory/10-production-floor.jpg';
+import imgMaterials from '../assets/factory/09-workshop-materials.jpg';
+---
+
+<Base
+  title="The Factory — 21 Years of Tungsten-Copper, National High-Tech Certified | ArcTung"
+  description="ArcTung wheels are made in a Heyuan, Guangdong plant founded in 2005: 80,000 kg monthly capacity, copper-infiltration furnaces, 15 lathes, batch traceability. National High-Tech Enterprise and Guangdong Specialized & Sophisticated SME."
+>
+  <!-- HERO -->
+  <section class="relative overflow-hidden border-b border-steel-700/60">
+    <div class="absolute inset-0">
+      <Image src={imgBuilding} alt="Factory building in Heyuan, Guangdong" width={1600} height={900} class="h-full w-full object-cover" loading="eager" />
+      <div class="absolute inset-0 bg-gradient-to-r from-steel-950/95 via-steel-950/75 to-steel-950/40"></div>
+    </div>
+    <div class="relative mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32">
+      <p class="rise flex items-center gap-3 font-mono text-xs uppercase tracking-[0.3em] text-copper-300">
+        <span class="inline-block h-px w-10 bg-copper-400"></span>
+        Heyuan · Guangdong · China
+      </p>
+      <h1 class="rise d1 mt-6 max-w-3xl font-display text-4xl font-extrabold leading-tight tracking-tight text-tung-50 sm:text-5xl">
+        One factory floor. Every wheel we sell is made here.
+      </h1>
+      <p class="rise d2 mt-6 max-w-2xl text-lg leading-relaxed text-tung-300">
+        ArcTung is the export channel of a manufacturer founded in 2005 — among the earliest
+        tungsten-copper producers in China. Powders in on Monday, your wheels on a truck in under two weeks.
+      </p>
+    </div>
+  </section>
+
+  <!-- NUMBERS -->
+  <section class="border-b border-steel-700/60 bg-steel-900">
+    <div class="mx-auto grid max-w-7xl grid-cols-2 gap-px sm:grid-cols-4">
+      {[
+        { v: '2005', k: 'Founded (ex-state powder-metallurgy plant)' },
+        { v: '80,000 kg', k: 'Monthly tungsten-copper capacity' },
+        { v: '88', k: 'Granted patents' },
+        { v: '10+', k: 'Countries already supplied' }
+      ].map((s, i) => (
+        <div class={`rise d${i + 1} bg-steel-900 px-6 py-8 ${i > 0 ? 'border-l border-steel-700/60' : ''}`}>
+          <p class="font-display text-3xl font-extrabold text-tung-50 sm:text-4xl">{s.v}</p>
+          <p class="mt-2 font-mono text-[0.72rem] uppercase tracking-widest text-tung-500">{s.k}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- CREDENTIALS -->
+  <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-24">
+    <SectionHead
+      kicker="Credentials"
+      title="Certified where it counts"
+      lead="Government-verified innovation and specialization credentials, current and auditable. Certificate copies are included in our due-diligence pack on request."
+    />
+    <div class="grid gap-px overflow-hidden rounded-sm border border-steel-700/60 bg-steel-700/60 sm:grid-cols-2">
+      {[
+        ['National High-Tech Enterprise', 'Issued 2025 batch · valid through Dec 2028', 'MIIT-linked innovation certification, awarded after R&D spend and IP audits.'],
+        ['Guangdong "Specialized & Sophisticated" SME', 'Re-approved Feb 2026 · valid through Feb 2029', 'Provincial recognition for niche-market manufacturers with proven IP.'],
+        ['Science & Technology SME', 'National registration', 'Ongoing R&D program with ~6% of revenue reinvested annually.'],
+        ['88 granted patents', 'Forging · machining · materials', 'Including tungsten-copper rod forging equipment and process patents.']
+      ].map(([t, m, d]) => (
+        <div class="bg-steel-900 px-6 py-8">
+          <p class="font-display text-lg font-bold leading-snug text-tung-50">{t}</p>
+          <p class="mt-2 font-mono text-[0.72rem] uppercase tracking-widest text-copper-400">{m}</p>
+          <p class="mt-3 text-sm leading-relaxed text-tung-300">{d}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="border-y border-steel-700/60 bg-steel-900">
+    <div class="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-24">
+      <SectionHead
+        kicker="How wheels are made"
+        title="From powder to finished wheel, in-house"
+        lead="Pressing, sintering and infiltration happen under one roof; finish machining runs on our own 15-lathe cell. Nothing is subcontracted."
+      />
+      <ol class="grid gap-px overflow-hidden rounded-sm border border-steel-700/60 bg-steel-700/60 sm:grid-cols-2 lg:grid-cols-4">
+        {[
+          ['01', 'Powder & mixing', 'Tungsten powder blended with copper binder in 3-D mixers, weighed per batch record.'],
+          ['02', 'Pressing & sintering', 'Cold isostatic pressing to near-net shape, then high-temperature sintering in vacuum furnaces.'],
+          ['03', 'Copper infiltration', 'Molten copper infiltrates the tungsten skeleton — the heart of the W/Cu composite.'],
+          ['04', 'Machining & QC', 'Turned, milled and ground to 0.02 mm runout; composition, density and hardness verified per batch.']
+        ].map(([n, t, d]) => (
+          <li class="bg-steel-900 px-6 py-8">
+            <p class="font-mono text-sm text-copper-400">{n}</p>
+            <p class="mt-3 font-display text-lg font-bold text-tung-50">{t}</p>
+            <p class="mt-2 text-sm leading-relaxed text-tung-300">{d}</p>
+          </li>
+        ))}
+      </ol>
+
+      <div class="mt-8 grid gap-6 lg:grid-cols-3">
+        <figure class="hairline overflow-hidden rounded-sm">
+          <Image src={imgInfiltration} alt="Copper infiltration furnace" width={600} height={400} class="h-56 w-full object-cover" loading="lazy" />
+          <figcaption class="border-t border-steel-700/60 bg-steel-850 px-4 py-2.5 font-mono text-[0.7rem] uppercase tracking-widest text-tung-500">Infiltration furnaces ×8</figcaption>
+        </figure>
+        <figure class="hairline overflow-hidden rounded-sm">
+          <Image src={imgSintering} alt="Vacuum sintering furnace" width={600} height={400} class="h-56 w-full object-cover" loading="lazy" />
+          <figcaption class="border-t border-steel-700/60 bg-steel-850 px-4 py-2.5 font-mono text-[0.7rem] uppercase tracking-widest text-tung-500">High-temp sintering furnaces ×8</figcaption>
+        </figure>
+        <figure class="hairline overflow-hidden rounded-sm">
+          <Image src={imgControl} alt="Furnace control cabinets" width={600} height={400} class="h-56 w-full object-cover" loading="lazy" />
+          <figcaption class="border-t border-steel-700/60 bg-steel-850 px-4 py-2.5 font-mono text-[0.7rem] uppercase tracking-widest text-tung-500">Process control &amp; logging</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- QC + EQUIPMENT -->
+  <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-24">
+    <div class="grid gap-12 lg:grid-cols-2">
+      <div>
+        <SectionHead kicker="Quality control" title="Every batch, on the record" />
+        <ul class="grid gap-2.5 sm:grid-cols-2">
+          {['Chemical composition analysis', 'Density measurement', 'Hardness testing', 'Electrical conductivity', 'Tensile strength', 'Metallographic examination'].map((qc) => (
+            <li class="flex items-center gap-3 text-[0.95rem] text-tung-200">
+              <span class="inline-block h-1.5 w-1.5 shrink-0 rotate-45 bg-copper-500"></span>{qc}
+            </li>
+          ))}
+        </ul>
+        <p class="mt-6 leading-relaxed text-tung-300">
+          Tests run per batch and per customer specification; inspection records accompany every shipment.
+          ASTM B702-compliant third-party testing is available on request (~2 weeks, quoted with your order).
+        </p>
+        <p class="mt-4 leading-relaxed text-tung-300">
+          <span class="font-semibold text-tung-100">Batch traceability:</span> each wheel carries a batch code that maps
+          back to powder lot, furnace run and inspection record.
+        </p>
+      </div>
+      <div>
+        <SectionHead kicker="Equipment park" title="What's on the floor" />
+        <div class="hairline overflow-hidden rounded-sm bg-steel-900">
+          <table class="spec-table">
+            <tbody>
+              {[
+                ['3-D powder mixers', '15'],
+                ['Cold isostatic presses', '12'],
+                ['High-temp sintering furnaces', '8'],
+                ['Copper infiltration furnaces', '8'],
+                ['Lathes', '15'],
+                ['Milling machines', '2'],
+                ['Grinding machines', '5']
+              ].map(([k, v]) => (
+                <tr><td>{k}</td><td>{v}</td></tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="border-t border-steel-700/60 bg-steel-900">
+    <div class="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-24">
+      <SectionHead kicker="On site" title="The plant, unedited" lead="Photographed on the production floor — no stock images anywhere on this site." />
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {[
+          { src: imgFloor, alt: 'Production floor with machining cells', cap: 'Production floor' },
+          { src: imgMaterials, alt: 'Workshop materials staging', cap: 'Materials staging' },
+          { src: imgWarehouse, alt: 'Finished goods warehouse racking', cap: 'Finished goods' },
+          { src: imgDock, alt: 'Loading dock with export crates', cap: 'Export loading dock' }
+        ].map((g) => (
+          <figure class="hairline overflow-hidden rounded-sm bg-steel-900">
+            <Image src={g.src} alt={g.alt} width={520} height={360} class="h-44 w-full object-cover" loading="lazy" />
+            <figcaption class="border-t border-steel-700/60 bg-steel-850 px-4 py-2.5 font-mono text-[0.7rem] uppercase tracking-widest text-tung-500">{g.cap}</figcaption>
+          </figure>
+        ))}
+      </div>
+      <p class="mt-8 font-mono text-[0.75rem] uppercase tracking-widest text-tung-500">
+        Export packing: vacuum bag + foam lining, carton or wooden crate, ≤ 24 kg per box · {SITE.port}
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="border-t border-steel-700/60">
+    <div class="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-4 py-14 sm:px-6 md:flex-row md:items-center">
+      <div>
+        <h2 class="font-display text-2xl font-bold tracking-tight text-tung-50 sm:text-3xl">Want the due-diligence pack?</h2>
+        <p class="mt-2 text-tung-300">Business license, credential certificates, equipment list, QC flow — English, on request.</p>
+      </div>
+      <a href="/contact" class="inline-flex shrink-0 items-center justify-center gap-2 bg-copper-500 px-7 py-3.5 font-mono text-sm uppercase tracking-widest text-steel-950 transition-colors hover:bg-copper-400">
+        Request documents
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </section>
+</Base>

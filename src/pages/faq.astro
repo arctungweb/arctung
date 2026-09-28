@@ -1,0 +1,120 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionHead from '../components/SectionHead.astro';
+import FaqItem from '../components/FaqItem.astro';
+import SpecTable from '../components/SpecTable.astro';
+import { SITE } from '../config';
+
+const faqs: [string, string][] = [
+  [
+    'What is your minimum order quantity?',
+    'None for standard sizes — you can order a single wheel to qualify a supplier. Special shapes and profiles are quoted per part, with tooling and machining quoted transparently in the quotation sheet.'
+  ],
+  [
+    'What are the lead times?',
+    `Standard electrode wheels ship in ${SITE.leadStandard}; custom profiles take ${SITE.leadCustom} (tooling + machining). Paid samples ship in ${SITE.leadSample}. Western distributors typically quote 4–12 weeks for the same products.`
+  ],
+  [
+    'How does the sample policy work?',
+    'Samples are paid: $80–150 per piece depending on size, freight collect. Sample fees are fully credited against your first order of $1,000 or more — so qualifying us costs nothing if you buy.'
+  ],
+  [
+    'Which alloy should I choose — 75/25 or 70/30?',
+    'W/Cu 75/25 is the workhorse: best arc-erosion life, ~34% IACS conductivity. W/Cu 70/30 conducts ~42% IACS — better for heavy-current weld schedules on coated or high-resistivity steels, at some cost in wear life. Many production lines stock both.'
+  ],
+  [
+    'What are the quoted material properties?',
+    'Values on the product pages are typical for the grade: 75/25 ≈ 15.2 g/cm³ density, ~195 HB, ~34% IACS; 70/30 ≈ 14.5 g/cm³, ~175 HB, ~42% IACS. Per-batch composition, density and hardness reports are provided on request, and ASTM B702 third-party testing is available (~2 weeks).'
+  ],
+  [
+    'What tolerances can you hold?',
+    'OD 0/+0.5 mm, thickness ±0.1 mm, bore H7, runout 0.02 mm. Edge profiles: flat, single or double bevel, R profile, knurled — to drawing.'
+  ],
+  [
+    'What are the payment and shipping terms?',
+    'T/T 30% deposit with order, 70% before shipment (second orders can move to 30% + balance against B/L copy). Default term is FOB Shenzhen / Nansha; CIF and DAP quoted on request. HS code for electrode products: 84669390.'
+  ],
+  [
+    'Why only alloys below 80% tungsten?',
+    'W/Cu 75/25 and 70/30 sit below the 80% tungsten threshold of China dual-use export controls — meaning routine customs handling, no export-license delays, and predictable delivery for you. Higher-tungsten grades made for semiconductor packaging are not part of our export range.'
+  ],
+  [
+    'How is pricing handled?',
+    'Tungsten is a commodity, so quotes are held for 7 days and pricing follows the market. Volume breaks apply from 20 kg, and long-running programs can lock pricing for 30 days.'
+  ],
+  [
+    'Are you a factory or a trading company?',
+    'Both, deliberately: the wheels are made in our partner plant in Heyuan, Guangdong — founded 2005, National High-Tech Enterprise, 88 patents — while ArcTung handles English-language RFQs, export documentation and logistics. You get factory pricing with exporter service.'
+  ]
+];
+
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(([q, a]) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: a }
+  }))
+};
+---
+
+<Base
+  title="FAQ & Alloy Specifications | ArcTung W/Cu Electrode Wheels"
+  description="MOQ, lead times, sample policy, tolerances, payment terms and the W/Cu 75/25 vs 70/30 comparison — everything buyers ask before ordering tungsten-copper electrode wheels."
+  jsonLd={[faqLd]}
+>
+  <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-24">
+    <SectionHead
+      kicker="Reference"
+      title="Specs & straight answers"
+      lead="The questions every buyer asks before a first order — answered with the same numbers we quote against."
+    />
+
+    <div class="grid gap-12 lg:grid-cols-5">
+      <div class="lg:col-span-3">
+        <div class="space-y-3">
+          {faqs.map(([q, a]) => <FaqItem q={q} a={a} />)}
+        </div>
+      </div>
+
+      <aside class="lg:col-span-2">
+        <SpecTable
+          caption="Grade comparison · typical values"
+          rows={[
+            { label: 'Composition', value: 'W/Cu 75/25 — W/Cu 70/30' },
+            { label: 'Density', value: '≈ 15.2 g/cm³ — ≈ 14.5 g/cm³' },
+            { label: 'Hardness', value: '≈ 195 HB — ≈ 175 HB' },
+            { label: 'Conductivity', value: '≈ 34% IACS — ≈ 42% IACS' },
+            { label: 'Best for', value: 'Long wear life — heavy current' },
+            { label: 'Max size', value: 'OD 400 × 100 mm (both)' },
+            { label: 'Lead time', value: '10–14 days standard (both)' }
+          ]}
+        />
+        <div class="hairline mt-6 rounded-sm bg-steel-900 p-6">
+          <p class="font-mono text-[0.72rem] uppercase tracking-widest text-tung-500">Trade facts</p>
+          <ul class="mt-4 space-y-2.5 text-sm text-tung-300">
+            <li>HS code 84669390 — welding-machine parts</li>
+            <li>{SITE.port} — CIF / DAP on request</li>
+            <li>Payment T/T 30 / 70</li>
+            <li>Quotes valid 7 days</li>
+            <li>Batch traceability on every order</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="border-t border-steel-700/60">
+    <div class="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-4 py-14 sm:px-6 md:flex-row md:items-center">
+      <div>
+        <h2 class="font-display text-2xl font-bold tracking-tight text-tung-50 sm:text-3xl">Question not on the list?</h2>
+        <p class="mt-2 text-tung-300">Ask it in the RFQ form — technical answers within 24 hours.</p>
+      </div>
+      <a href="/contact" class="inline-flex shrink-0 items-center justify-center gap-2 bg-copper-500 px-7 py-3.5 font-mono text-sm uppercase tracking-widest text-steel-950 transition-colors hover:bg-copper-400">
+        Contact us
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </section>
+</Base>

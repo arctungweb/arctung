@@ -1,0 +1,145 @@
+@import "tailwindcss";
+@import "@fontsource/archivo/500.css";
+@import "@fontsource/archivo/600.css";
+@import "@fontsource/archivo/700.css";
+@import "@fontsource/archivo/800.css";
+@import "@fontsource/barlow/400.css";
+@import "@fontsource/barlow/500.css";
+@import "@fontsource/barlow/600.css";
+@import "@fontsource/ibm-plex-mono/400.css";
+@import "@fontsource/ibm-plex-mono/500.css";
+
+@theme {
+  --color-steel-950: #0d0f12;
+  --color-steel-900: #13161b;
+  --color-steel-850: #171b21;
+  --color-steel-800: #1c2128;
+  --color-steel-700: #2a303a;
+  --color-steel-600: #3b4350;
+  --color-tung-50: #f5f4f2;
+  --color-tung-100: #eae8e4;
+  --color-tung-300: #bab7b1;
+  --color-tung-500: #827f78;
+  --color-tung-700: #57544f;
+  --color-copper-300: #f0ac79;
+  --color-copper-400: #e08a4f;
+  --color-copper-500: #cf7136;
+  --color-copper-600: #b25a28;
+
+  --font-display: "Archivo", "Segoe UI", sans-serif;
+  --font-body: "Barlow", "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", "Consolas", monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-steel-950);
+  color: var(--color-tung-100);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-copper-500);
+  color: var(--color-steel-950);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-copper-400);
+  outline-offset: 3px;
+}
+
+/* hairline borders used across the spec-sheet aesthetic */
+.hairline {
+  border: 1px solid color-mix(in srgb, var(--color-steel-700) 70%, transparent);
+}
+
+.rule-tick {
+  background-image: linear-gradient(
+    to right,
+    var(--color-steel-600) 1px,
+    transparent 1px
+  );
+  background-size: 9px 1px;
+  height: 1px;
+}
+
+/* subtle grain overlay for depth */
+.grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
+}
+
+/* page-load staggered reveals */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rise {
+  animation: rise-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.d1 { animation-delay: 0.08s; }
+.d2 { animation-delay: 0.16s; }
+.d3 { animation-delay: 0.26s; }
+.d4 { animation-delay: 0.38s; }
+.d5 { animation-delay: 0.52s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .rise {
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* data table used for specs */
+.spec-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.925rem;
+}
+
+.spec-table th {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-tung-500);
+  text-align: left;
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid var(--color-steel-700);
+}
+
+.spec-table td {
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-steel-700) 55%, transparent);
+  color: var(--color-tung-100);
+  vertical-align: top;
+}
+
+.spec-table tr:last-child td {
+  border-bottom: none;
+}
+
+.spec-table td:first-child {
+  color: var(--color-tung-300);
+  width: 38%;
+}

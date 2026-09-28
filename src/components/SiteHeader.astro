@@ -1,0 +1,58 @@
+---
+import { NAV } from '../config';
+---
+
+<header class="sticky top-0 z-50 border-b border-steel-700/60 bg-steel-950/90 backdrop-blur-md">
+  <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6">
+    <a href="/" class="group flex items-center gap-2.5" aria-label="ArcTung — home">
+      <svg width="30" height="30" viewBox="0 0 64 64" aria-hidden="true">
+        <circle cx="32" cy="32" r="21" fill="none" stroke="var(--color-copper-400)" stroke-width="5" class="transition-colors group-hover:stroke-copper-300"/>
+        <circle cx="32" cy="32" r="6.5" fill="none" stroke="var(--color-tung-300)" stroke-width="4"/>
+        <rect x="29.5" y="5" width="5" height="10" rx="1.5" fill="var(--color-copper-500)"/>
+      </svg>
+      <span class="font-display text-xl font-bold tracking-tight text-tung-50">Arc<span class="text-copper-400">Tung</span></span>
+    </a>
+
+    <nav class="hidden items-center gap-8 md:flex" aria-label="Main">
+      {NAV.map((item) => (
+        <a href={item.href} class="font-mono text-[0.8rem] uppercase tracking-widest text-tung-300 transition-colors hover:text-copper-300">
+          {item.label}
+        </a>
+      ))}
+    </nav>
+
+    <div class="hidden md:block">
+      <a href="/contact" class="inline-block border border-copper-500/70 bg-copper-500/10 px-4 py-2 font-mono text-[0.78rem] uppercase tracking-widest text-copper-300 transition-all hover:bg-copper-500 hover:text-steel-950">
+        Get a Quote
+      </a>
+    </div>
+
+    <button id="menu-btn" class="flex h-10 w-10 items-center justify-center md:hidden" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M3 6h18M3 12h18M3 18h18" stroke="var(--color-tung-100)"/>
+      </svg>
+    </button>
+  </div>
+
+  <div id="mobile-menu" class="hidden border-t border-steel-700/60 md:hidden">
+    <nav class="flex flex-col px-4 py-3" aria-label="Mobile">
+      {NAV.map((item) => (
+        <a href={item.href} class="border-b border-steel-800 py-3 font-mono text-sm uppercase tracking-widest text-tung-200 last:border-none hover:text-copper-300">
+          {item.label}
+        </a>
+      ))}
+      <a href="/contact" class="mt-3 mb-2 block bg-copper-500 px-4 py-3 text-center font-mono text-sm uppercase tracking-widest text-steel-950">
+        Get a Quote
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  btn?.addEventListener('click', () => {
+    const open = menu?.classList.toggle('hidden') === false;
+    btn.setAttribute('aria-expanded', String(open));
+  });
+</script>

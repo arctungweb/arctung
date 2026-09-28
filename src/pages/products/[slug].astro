@@ -1,0 +1,127 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import SpecTable from '../../components/SpecTable.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { SITE } from '../../config';
+import { products, type Product } from '../../data/products';
+
+export function getStaticPaths() {
+  return products.map((product) => ({
+    params: { slug: product.slug },
+    props: { product }
+  }));
+}
+
+const { product } = Astro.props as { product: Product };
+const others = products.filter((p) => p.slug !== product.slug).slice(0, 3);
+
+const productLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: product.name,
+  description: `${product.tagline}. ${product.alloyNote}. Max OD 400 mm, tolerances to runout 0.02 mm, factory-direct from China with no MOQ.`,
+  brand: { '@type': 'Brand', name: 'ArcTung' },
+  category: 'Resistance welding consumables',
+  material: product.alloy
+};
+---
+
+<Base
+  title={`${product.name} | ${product.alloy} — ArcTung`}
+  description={`${product.tagline}. ${product.alloyNote}. Max OD 400 mm, lead time ${SITE.leadStandard}, no MOQ, FOB Shenzhen.`}
+  jsonLd={[productLd]}
+>
+  <!-- HERO -->
+  <section class="border-b border-steel-700/60 bg-steel-900">
+    <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20">
+      <nav class="rise flex items-center gap-2 font-mono text-[0.72rem] uppercase tracking-widest text-tung-500" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-copper-300">Home</a>
+        <span>/</span>
+        <a href="/#products" class="hover:text-copper-300">Products</a>
+        <span>/</span>
+        <span class="text-copper-300">{product.shortName}</span>
+      </nav>
+
+      <div class="mt-8 grid gap-10 lg:grid-cols-2 lg:items-center">
+        <div>
+          <p class="rise d1 font-mono text-xs uppercase tracking-[0.28em] text-copper-400">{product.alloy}</p>
+          <h1 class="rise d2 mt-4 font-display text-3xl font-extrabold leading-tight tracking-tight text-tung-50 sm:text-5xl">
+            {product.name}
+          </h1>
+          <p class="rise d3 mt-4 text-lg text-tung-300">{product.tagline}</p>
+          <div class="rise d4 mt-8 flex flex-col gap-3 sm:flex-row">
+            <a href="/contact" class="inline-flex items-center justify-center gap-2 bg-copper-500 px-6 py-3 font-mono text-sm uppercase tracking-widest text-steel-950 transition-colors hover:bg-copper-400">
+              Request a quote
+            </a>
+            <a href="/faq" class="inline-flex items-center justify-center gap-2 border border-steel-600 px-6 py-3 font-mono text-sm uppercase tracking-widest text-tung-200 transition-colors hover:border-copper-500 hover:text-copper-300">
+              Sample policy
+            </a>
+          </div>
+          <p class="rise d5 mt-5 font-mono text-[0.75rem] uppercase tracking-widest text-tung-500">
+            {product.alloyNote} · No MOQ · Lead time {SITE.leadStandard}
+          </p>
+        </div>
+        <figure class="rise d3 hairline overflow-hidden rounded-sm">
+          <Image src={product.image} alt={product.imageAlt} width={880} height={560} class="h-full w-full object-cover" loading="eager" />
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- DETAILS + SPECS -->
+  <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20">
+    <div class="grid gap-12 lg:grid-cols-5">
+      <div class="lg:col-span-2">
+        <SectionHead kicker="Overview" title="Made by infiltration, finished by machining" />
+        {product.description.map((para) => (
+          <p class="mt-4 leading-relaxed text-tung-300">{para}</p>
+        ))}
+        <p class="mt-6 rounded-sm border-l-2 border-copper-500 bg-steel-900 px-5 py-4 text-sm leading-relaxed text-tung-300">
+          Material values shown are typical for the grade. Per-batch composition, density and hardness reports
+          are provided on request — see <a href="/factory" class="text-copper-300 hover:underline">quality control</a>.
+        </p>
+      </div>
+      <div class="lg:col-span-3">
+        <SpecTable caption={`Specification · ${product.shortName}`} rows={product.specs} />
+        <div class="mt-8">
+          <p class="font-mono text-[0.72rem] uppercase tracking-[0.2em] text-tung-500">Typical applications</p>
+          <ul class="mt-4 grid gap-2.5 sm:grid-cols-2">
+            {product.applications.map((app) => (
+              <li class="flex items-center gap-3 text-[0.95rem] text-tung-200">
+                <span class="inline-block h-1.5 w-1.5 shrink-0 rotate-45 bg-copper-500"></span>{app}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CROSS-SELL -->
+  <section class="border-t border-steel-700/60 bg-steel-900">
+    <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20">
+      <SectionHead kicker="Also from the same floor" title="Pair it with" />
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {others.map((p) => <ProductCard product={p} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="border-t border-steel-700/60">
+    <div class="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-4 py-14 sm:px-6 md:flex-row md:items-center">
+      <div>
+        <h2 class="font-display text-2xl font-bold tracking-tight text-tung-50 sm:text-3xl">
+          Need {product.shortName} on a drawing?
+        </h2>
+        <p class="mt-2 text-tung-300">Send alloy, dimensions and quantity — quote back within 24 hours.</p>
+      </div>
+      <a href="/contact" class="inline-flex shrink-0 items-center justify-center gap-2 bg-copper-500 px-7 py-3.5 font-mono text-sm uppercase tracking-widest text-steel-950 transition-colors hover:bg-copper-400">
+        Start your RFQ
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </section>
+</Base>
