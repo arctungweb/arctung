@@ -7,7 +7,7 @@ ArcTung 是钨铜（W/Cu）电极的出口业务站点，面向欧美与日韩�
 - **Astro 5** — 静态站点生成
 - **Tailwind CSS 4** — 通过 `@tailwindcss/vite` 接入
 - **TypeScript**
-- **Cloudflare Pages** — 托管 + Pages Functions
+- **Cloudflare Workers** — 托管（静态资源）+ Worker 运行时
 - **Resend** — 询盘邮件（内部通知 + 客户自动回执）
 - 字体：Archivo / Barlow / IBM Plex Mono（`@fontsource`）
 
@@ -25,7 +25,8 @@ src/
                            products/[slug] / applications/[slug]
   styles/global.css        设计令牌与全局样式
   assets/factory/          工厂实拍图（11 张）
-functions/api/inquiry.ts   询盘接口（Pages Function）
+  worker.ts                Worker 入口（/api/inquiry 路由 → 其余转静态资源）
+  api/inquiry.ts           询盘处理（Resend 发信）
 scripts/generate-og.mjs    生成 OG 分享图
 public/                    favicon.svg / robots.txt / og/og-default.png
 ```
@@ -50,6 +51,8 @@ npm run preview
 
 本地调试放在项目根目录的 `.dev.vars`（已被 git 忽略）；线上在 Cloudflare 项目的环境变量里配置。两项缺任一，接口会返回 `server_not_configured`。
 
+`npm run dev` 只起 Astro 页面服务，不含 `/api/inquiry`；要联调完整站点（含接口），用 `npm run preview:worker`（先构建再由 `wrangler dev` 同时提供页面与接口）。
+
 ## 询盘接口
 
 `POST /api/inquiry`，JSON 字段：
@@ -67,13 +70,12 @@ npm run preview
 
 ## 部署
 
-Cloudflare Pages → 连接本仓库：
+Cloudflare → **Workers** → Import a repository（或 Create → Continue with GitHub）→ 选本仓库：
 
 | 设置项 | 值 |
 | --- | --- |
-| 框架预设 | Astro |
-| 构建命令 | `npm run build` |
-| 输出目录 | `dist` |
-| 根目录 | 留空（仓库根即项目） |
+| Build command | `npm run build` |
+| Deploy command | `npx wrangler deploy`（默认） |
+| Root directory | 留空（仓库根即项目） |
 
-推送到 `main` 分支即触发自动构建部署。仓库根目录的 `wrangler.toml` 已声明 `pages_build_output_dir = "dist"`。
+`wrangler.toml` 已声明 `main = "src/worker.ts"` 与 `[assets] directory = "./dist"`，wrangler 会自动完成构建产物上传与 Worker 绑定。推送到 `main` 分支即触发自动构建部署。

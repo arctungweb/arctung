@@ -21,9 +21,8 @@ function truncate(value: string, max: number): string {
   return value.length > max ? value.slice(0, max) + '…' : value;
 }
 
-export const onRequestPost: PagesFunction = async ({ request, env }) => {
-  const apiKey = (env as { RESEND_API_KEY?: string }).RESEND_API_KEY;
-  const toEmail = (env as { INQUIRY_TO_EMAIL?: string }).INQUIRY_TO_EMAIL;
+export async function handleInquiry(request: Request, env: Env): Promise<Response> {
+  const { RESEND_API_KEY: apiKey, INQUIRY_TO_EMAIL: toEmail } = env;
 
   if (!apiKey || !toEmail) {
     return Response.json({ ok: false, error: 'server_not_configured' }, { status: 500 });
@@ -156,6 +155,4 @@ export const onRequestPost: PagesFunction = async ({ request, env }) => {
   }
 
   return Response.json({ ok: true });
-};
-
-export const onRequest = () => new Response('Method Not Allowed', { status: 405 });
+}

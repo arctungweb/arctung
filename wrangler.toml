@@ -1,3 +1,10 @@
 name = "arctung-website"
-pages_build_output_dir = "dist"
-compatibility_date = "2026-09-01"
+main = "src/worker.ts"
+compatibility_date = "2026-09-29"
+
+[assets]
+directory = "./dist"
+binding = "ASSETS"
+
+[observability]
+enabled = true

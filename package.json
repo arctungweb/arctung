@@ -7,7 +7,12 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "preview:worker": "astro build && wrangler dev",
     "astro": "astro"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20260929.1",
+    "wrangler": "^4.143.0"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.2.1",
