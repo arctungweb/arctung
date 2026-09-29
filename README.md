@@ -74,8 +74,8 @@ Cloudflare → **Workers** → Import a repository（或 Create → Continue wit
 
 | 设置项 | 值 |
 | --- | --- |
-| Build command | `npm run build` |
+| Build command | **留空**（构建已写进 `wrangler.toml` 的 `[build]` 段，部署命令会自动执行） |
 | Deploy command | `npx wrangler deploy`（默认） |
 | Root directory | 留空（仓库根即项目） |
 
-`wrangler.toml` 已声明 `main = "src/worker.ts"` 与 `[assets] directory = "./dist"`，wrangler 会自动完成构建产物上传与 Worker 绑定。推送到 `main` 分支即触发自动构建部署。
+`wrangler.toml` 已声明 `main = "src/worker.ts"`、`[build] command = "npm run build"` 与 `[assets] directory = "./dist"`——`wrangler deploy` 会先构建再上传产物与 Worker。两处都填 Build command 会导致重复构建，取一即可。推送到 `main` 分支即触发自动构建部署。
