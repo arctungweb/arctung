@@ -1,8 +1,8 @@
 import type { ImageMetadata } from 'astro';
-import imgSeam from '../assets/factory/03-sintering-workshop.png';
+import imgSeam from '../assets/factory/03-sintering-workshop.webp';
 import imgRW from '../assets/factory/07-product-threaded-electrodes.jpg';
 import imgEdm from '../assets/factory/09-workshop-materials.jpg';
-import imgHeat from '../assets/factory/01-infiltration-furnace.png';
+import imgHeat from '../assets/factory/01-infiltration-furnace.webp';
 
 export interface Application {
   slug: string;
