@@ -1,0 +1,33 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="Page Not Found | ArcTung"
+  description="The page you requested does not exist. Browse tungsten-copper electrode wheels, applications and factory information, or send an RFQ."
+  noindex
+>
+  <section class="mx-auto max-w-7xl px-4 py-28 sm:px-6 sm:py-36">
+    <p class="font-mono text-xs uppercase tracking-[0.3em] text-copper-400">Error 404</p>
+    <h1 class="mt-5 font-display text-4xl font-extrabold tracking-tight text-tung-50 sm:text-6xl">
+      This wheel never left the shop floor.
+    </h1>
+    <p class="mt-6 max-w-xl text-lg leading-relaxed text-tung-300">
+      The page you asked for does not exist — maybe a stale link or a typo. The products,
+      the factory and the RFQ form are all one click away.
+    </p>
+
+    <div class="mt-10 flex flex-col gap-3 sm:flex-row">
+      <a href="/" class="inline-flex items-center justify-center gap-2 bg-copper-500 px-7 py-3.5 font-mono text-sm uppercase tracking-widest text-steel-950 transition-colors hover:bg-copper-400">
+        Back to home
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a href="/#products" class="inline-flex items-center justify-center gap-2 border border-steel-600 px-7 py-3.5 font-mono text-sm uppercase tracking-widest text-tung-200 transition-colors hover:border-copper-500 hover:text-copper-300">
+        Browse products
+      </a>
+      <a href="/contact" class="inline-flex items-center justify-center gap-2 border border-steel-600 px-7 py-3.5 font-mono text-sm uppercase tracking-widest text-tung-200 transition-colors hover:border-copper-500 hover:text-copper-300">
+        Send an RFQ
+      </a>
+    </div>
+  </section>
+</Base>

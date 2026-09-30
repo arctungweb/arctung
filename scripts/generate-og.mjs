@@ -56,3 +56,23 @@ await sharp('src/assets/factory/10-production-floor.jpg')
   .toFile('public/og/og-default.png');
 
 console.log('public/og/og-default.png written');
+
+// Square brand logo for Organization JSON-LD (Google requires raster ≥112px).
+const L = 512;
+const logoSvg = Buffer.from(`
+<svg width="${L}" height="${L}" xmlns="http://www.w3.org/2000/svg">
+  <rect width="${L}" height="${L}" fill="#0d0f12"/>
+  <g transform="translate(256,150)">
+    <circle cx="0" cy="0" r="72" fill="none" stroke="#e08a4f" stroke-width="11"/>
+    <circle cx="0" cy="0" r="20" fill="none" stroke="#bab7b1" stroke-width="7"/>
+    <rect x="-7" y="-106" width="14" height="26" rx="3" fill="#cf7136"/>
+  </g>
+  <text x="256" y="332" text-anchor="middle" font-family="Arial, sans-serif" font-size="72" font-weight="bold"><tspan fill="#ecebe8">Arc</tspan><tspan fill="#e08a4f">Tung</tspan></text>
+  <text x="256" y="386" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" letter-spacing="8" fill="#8d8a84">W/Cu ELECTRODES</text>
+  <rect x="216" y="420" width="80" height="4" fill="#cf7136"/>
+</svg>
+`);
+
+await sharp(logoSvg).png({ compressionLevel: 9 }).toFile('public/og/logo-512.png');
+
+console.log('public/og/logo-512.png written');

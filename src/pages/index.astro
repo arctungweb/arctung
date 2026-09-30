@@ -8,11 +8,22 @@ import { products } from '../data/products';
 import { applications } from '../data/applications';
 import heroImg from '../assets/factory/03-sintering-workshop.png';
 import factoryImg from '../assets/factory/10-production-floor.jpg';
+
+const websiteLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: SITE.name,
+  url: SITE.url,
+  description: SITE.tagline,
+  inLanguage: 'en',
+  publisher: { '@type': 'Organization', name: SITE.name, url: SITE.url }
+};
 ---
 
 <Base
   title="Tungsten-Copper Electrode Wheels | No MOQ, 10–14 Day Lead Time"
   description="Factory-direct W/Cu 75/25 and W/Cu 70/30 electrode wheels up to 400 mm OD. No minimum order, 10–14 day standard lead time, tolerances to runout 0.02 mm. FOB Shenzhen, shipped worldwide."
+  jsonLd={[websiteLd]}
 >
   <!-- HERO -->
   <section class="relative overflow-hidden border-b border-steel-700/60">

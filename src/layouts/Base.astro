@@ -8,9 +8,10 @@ interface Props {
   title: string;
   description: string;
   jsonLd?: Record<string, unknown>[];
+  noindex?: boolean;
 }
 
-const { title, description, jsonLd = [] } = Astro.props;
+const { title, description, jsonLd = [], noindex = false } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 
 const orgLd = {
@@ -18,8 +19,14 @@ const orgLd = {
   '@type': 'Organization',
   name: SITE.name,
   url: SITE.url,
-  logo: `${SITE.url}/favicon.svg`,
+  logo: `${SITE.url}/og/logo-512.png`,
   email: SITE.email,
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'sales',
+    email: SITE.email,
+    availableLanguage: ['en']
+  },
   address: {
     '@type': 'PostalAddress',
     addressLocality: 'Heyuan',
@@ -37,16 +44,19 @@ const allLd = [orgLd, ...jsonLd];
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#0d0f12" />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={SITE.name} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content="en_US" />
     <meta property="og:image" content={`${SITE.url}/og/og-default.png`} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />

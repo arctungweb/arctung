@@ -22,16 +22,29 @@ const productLd = {
   '@type': 'Product',
   name: product.name,
   description: `${product.tagline}. ${product.alloyNote}. Max OD 400 mm, tolerances to runout 0.02 mm, factory-direct from China with no MOQ.`,
+  image: [new URL(product.image.src, SITE.url).href],
+  url: `${SITE.url}/products/${product.slug}/`,
+  sku: product.slug,
   brand: { '@type': 'Brand', name: 'ArcTung' },
   category: 'Resistance welding consumables',
   material: product.alloy
+};
+
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url },
+    { '@type': 'ListItem', position: 2, name: 'Products', item: `${SITE.url}/#products` },
+    { '@type': 'ListItem', position: 3, name: product.shortName, item: `${SITE.url}/products/${product.slug}/` }
+  ]
 };
 ---
 
 <Base
   title={`${product.name} | ${product.alloy} — ArcTung`}
   description={`${product.tagline}. ${product.alloyNote}. Max OD 400 mm, lead time ${SITE.leadStandard}, no MOQ, FOB Shenzhen.`}
-  jsonLd={[productLd]}
+  jsonLd={[productLd, breadcrumbLd]}
 >
   <!-- HERO -->
   <section class="border-b border-steel-700/60 bg-steel-900">
