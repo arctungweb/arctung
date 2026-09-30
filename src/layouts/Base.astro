@@ -14,6 +14,16 @@ interface Props {
 const { title, description, jsonLd = [], noindex = false } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 
+// Google truncates meta descriptions around 155-160 chars — cut at a word
+// boundary instead of letting the SERP do it mid-sentence.
+function truncateDesc(value: string, max = 160): string {
+  if (value.length <= max) return value;
+  const cut = value.slice(0, max);
+  const space = cut.lastIndexOf(' ');
+  return (space > 100 ? cut.slice(0, space) : cut).trim();
+}
+const desc = truncateDesc(description);
+
 const orgLd = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
@@ -43,7 +53,7 @@ const allLd = [orgLd, ...jsonLd];
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
-    <meta name="description" content={description} />
+    <meta name="description" content={desc} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -54,7 +64,7 @@ const allLd = [orgLd, ...jsonLd];
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={SITE.name} />
     <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
+    <meta property="og:description" content={desc} />
     <meta property="og:url" content={canonical} />
     <meta property="og:locale" content="en_US" />
     <meta property="og:image" content={`${SITE.url}/og/og-default.png`} />
