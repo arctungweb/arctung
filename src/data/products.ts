@@ -9,6 +9,13 @@ export interface SpecRow {
   value: string;
 }
 
+export interface BodySection {
+  heading: string;
+  paragraphs: string[];
+  bullets?: string[];
+  links?: { label: string; href: string }[];
+}
+
 export interface Product {
   slug: string;
   name: string;
@@ -23,6 +30,7 @@ export interface Product {
   badge: string;
   specs: SpecRow[];
   applications: string[];
+  body?: BodySection[];
 }
 
 export const products: Product[] = [
@@ -52,6 +60,34 @@ export const products: Product[] = [
       { label: 'Lead time', value: '10–14 days standard · 20–25 days custom' },
       { label: 'MOQ', value: 'None for standard sizes' }
     ],
+    body: [
+      {
+        heading: 'Why the harder grade runs seam wheels',
+        paragraphs: [
+          'A seam wheel is a bearing as much as an electrode: it carries electrode force, tracks the strip at line speed, and passes thousands of amps through a moving contact. The 75/25 grade is specified where the limiting failure is mechanical — the face flattening out, the edge profile rounding over, or the wheel growing in diameter until the seam width drifts out of specification.',
+          'The extra tungsten does not eliminate wear — nothing does — but it changes the wear mode from smearing to slow, even dressing, which is what makes predictable reorder cycles possible.'
+        ]
+      },
+      {
+        heading: 'Edge profiles and dressing',
+        paragraphs: [
+          'Profile selection drives seam consistency more than alloy choice does. The shapes we cut most often:',
+        ],
+        bullets: [
+          'Flat face — general seam work and roller-spot welding where seam width tolerance is generous.',
+          'Single or double bevel — concentrates current on the sheet side; the standard choice for can-body and drum-lid seams.',
+          'R profile — for curved seams and thin strip where entry angle matters.',
+          'Knurled face — drives the strip and cleans the contact track on tube mills.'
+        ]
+      },
+      {
+        heading: 'What to confirm before ordering',
+        paragraphs: [
+          'Three dimensions decide whether a replacement wheel drops straight onto your shaft: bore (we cut H7 as standard, keyed bores to drawing), OD against your arm geometry (0/+0.5 mm), and runout (0.02 mm — the value that stops the wheel from hunting on the seam). Send us the drawing or the worn wheel and we will match all three.',
+          'Thickness is held to ±0.1 mm and the wheel is balanced before packing, because at line speed an unbalanced wheel shows up as seam chatter long before it shows up as wear.'
+        ]
+      }
+    ],
     applications: ['Seam welding of galvanized steel', 'Roller-spot welding', 'Can and drum lid welding', 'Tube mills and strip welding']
   },
   {
@@ -80,6 +116,29 @@ export const products: Product[] = [
       { label: 'Lead time', value: '10–14 days standard · 20–25 days custom' },
       { label: 'MOQ', value: 'None for standard sizes' }
     ],
+    body: [
+      {
+        heading: 'Where the extra conductivity pays',
+        paragraphs: [
+          'Roughly 25% higher conductivity than 75/25 means less resistive heat generated in the wheel itself for the same current schedule. On thick stock, high-speed lines, or any schedule already near the ceiling of your transformer and secondary circuit, that difference shows up as a cooler wheel face, less sticking, and a wider usable current window.',
+          'The trade is erosion life: the softer composite dresses faster under the same electrode force. On lines that dress on a fixed interval anyway, the faster dress rate costs little — which is why 70/30 is the default on can-body and tube-mill lines that maintain their wheels on schedule.'
+        ]
+      },
+      {
+        heading: 'Switching between grades',
+        paragraphs: [
+          'Both grades are produced on the same infiltration line and machined on the same cell, so switching a station from 75/25 to 70/30 — or running one station on each — is a purchasing decision, not a process change. Bore, OD, profile and tolerances are identical across grades; only the material values differ.',
+          'A practical approach many customers take: stock 75/25 for the stations where wheel life limits the campaign, 70/30 for the stations where heat limits it. Both stay in supply from stock shapes with no minimum order.'
+        ]
+      },
+      {
+        heading: 'Traceability and inspection',
+        paragraphs: [
+          'Every batch is checked for composition, density and hardness, and a batch traceability record ships on request. For buyers running automotive or food-can lines that require incoming inspection paperwork, we can include dimensional inspection records per wheel — bore, OD, runout and thickness — against the drawing revision you hold.',
+          'Third-party stamped test reports to ASTM B702 are available when your quality system needs an external certificate rather than a factory report.'
+        ]
+      }
+    ],
     applications: ['Heavy-current seam welding', 'Welding of coated and high-resistivity steels', 'Projection welding fixtures', 'General resistance-welding consumables']
   },
   {
@@ -104,6 +163,29 @@ export const products: Product[] = [
       { label: 'Lead time', value: '10–14 days standard' },
       { label: 'MOQ', value: 'None for stock sizes' }
     ],
+    body: [
+      {
+        heading: 'Sizes and delivery condition',
+        paragraphs: [
+          'Round rods run from small diameters up to the infiltration limits of our press — 400 mm OD is the practical ceiling, and blocks are cut to 100 mm thickness. Stock sizes ship as-rolled and rough-machined; ground stock is available when you need a clean starting surface for your own lathe or grinder work.',
+          'Every rod and block ships vacuum-bagged with foam lining, rods in cartons and blocks in wooden crates. Nothing leaves the floor damp or dinged — tungsten copper is dense, and packaging failures break receiving docks, not just products.'
+        ]
+      },
+      {
+        heading: 'Machining notes for your shop',
+        paragraphs: [
+          'Infiltrated W/Cu machines like a hard bronze: carbide tooling, positive rake, flood coolant, and no grinding required for ordinary turning, milling or drilling. Threading is practical on conventional lathes — which is why our threaded-electrode line runs on standard equipment with gauge checks per batch.',
+          'The two habits worth forming: take light finishing passes to avoid tearing the copper phase out of the surface, and support thin sections — the composite is stiff but not forgiving of clamping chatter on slender parts.'
+        ]
+      },
+      {
+        heading: 'What shops make from this stock',
+        paragraphs: [
+          'The common denominator is consumable parts that see heat and current: spot-welding caps and holders, projection-welding die facings, EDM electrode sections for die-sinking work, and journal or contact surfaces in electrical fixtures.',
+          'If your end use is closer to a finished component than a shop blank — bores, profiles, threads, faces — skip the second machining step entirely and send us the drawing; finished parts often cost less than stock plus your machine time.'
+        ]
+      }
+    ],
     applications: ['Spot-welding electrode caps', 'EDM electrode sections', 'Holder and shank material']
   },
   {
@@ -126,6 +208,30 @@ export const products: Product[] = [
       { label: 'Thread forms', value: 'Metric · UNC/UNF · to drawing' },
       { label: 'Lead time', value: '10–14 days standard · 20–25 days custom' },
       { label: 'MOQ', value: 'None for standard sizes' }
+    ],
+    body: [
+      {
+        heading: 'Threading a refractory composite',
+        paragraphs: [
+          'Cutting a clean thread in tungsten copper is a quality-control problem more than a machining one: the copper phase tears easily, and a torn thread root becomes a stress riser exactly where gun vibration concentrates. Our thread cell runs fifteen lathes dedicated to this work, with go/no-go thread gauges checked per batch — because a thread that gauges true on arrival is the only thread that screws into your gun the first time.',
+          'Metric and UNC/UNF forms are routine; special forms, left-hand threads and tapered shanks are cut to drawing. Dimensional inspection records accompany each batch on request.'
+        ]
+      },
+      {
+        heading: 'Design notes for gun integration',
+        paragraphs: [
+          'The threaded joint in a welding gun does three jobs at once: it carries welding current, it holds electrode force, and it must release for tip changes without galling. Thread fit class matters here — we cut to the class your holder was designed around, and we can hold it batch after batch because the same lathe programs run every order.',
+          'For automated stations, consistency beats everything: an electrode that seats identically every time is one that does not force a re-teach of your robot cell. Repeat orders are machined to the same program and the same drawing revision, so seating behavior never drifts.'
+        ]
+      },
+      {
+        heading: 'Failure modes worth knowing',
+        paragraphs: [
+          'Threaded W/Cu electrodes rarely fail at the thread; they fail at the face, from mushrooming and coating pickup — the same wear physics as every resistance-welding consumable. What threads do fail from is cross-threading at tip changes and vibration loosening in guns without the right seating torque.',
+          'If your consumption pattern shows thread damage rather than face wear, the fix is usually seating practice or holder design, not alloy. Send us the failed electrodes — a photo of the wear face tells us more than a purchase order does.'
+        ],
+        links: [{ label: 'Resistance welding electrode applications', href: '/applications/resistance-welding-electrodes/' }]
+      }
     ],
     applications: ['Resistance-welding guns', 'Automated welding stations', 'Robot torch consumables']
   },
@@ -150,6 +256,35 @@ export const products: Product[] = [
       { label: 'Tolerances', value: 'OD 0/+0.5 mm · thickness ±0.1 mm · bore H7 · runout 0.02 mm' },
       { label: 'Lead time', value: '20–25 days (tooling + machining)' },
       { label: 'MOQ', value: 'Quoted per part' }
+    ],
+    body: [
+      {
+        heading: 'How a custom quote runs',
+        paragraphs: [
+          'Send the drawing — PDF, DWG, STEP, or a marked-up photo of the old part — plus alloy grade, quantity and your delivery port. Within 24 hours you have a firm unit price, tooling cost if any, and a lead time; the quote holds for 7 days because tungsten raw material moves.',
+          'First articles are quoted at one-piece quantities with no penalty: we do not use minimum-order pricing to force volume. If the part works in your process, repeat batches run off the same program at the same price basis, with raw-material movement as the only variable.'
+        ]
+      },
+      {
+        heading: 'What the floor can take on',
+        paragraphs: [
+          'The machine park covers turning, milling, drilling, threading and surface grinding across fifteen lathes plus machining centers, with parts up to 400 mm OD × 100 mm thickness. Common custom work includes:',
+        ],
+        bullets: [
+          'Wheels with keyed bores, R profiles and knurl faces to drawing',
+          'Threaded studs and shanks in metric, UNC/UNF and special forms',
+          'Profiled segments, blocks and near-net blanks for EDM and fixture work',
+          'Water-jacketed holders and assemblies where W/Cu faces a cooled shank'
+        ]
+      },
+      {
+        heading: 'The composition line, stated plainly',
+        paragraphs: [
+          'We quote W/Cu 75/25 and 70/30 only. Every alloy below 80% tungsten ships as ordinary industrial goods — standard HS classification, no export-license step, routine customs in the EU, US, Japan and Korea.',
+          'If your drawing specifies a grade above that line, we decline and say so in the first reply rather than after your tooling is committed. It keeps our supply chain predictable, and your deliveries with it.'
+        ],
+        links: [{ label: 'Heat sinks & contacts — the 80% boundary explained', href: '/applications/heat-sinks-contacts/' }]
+      }
     ],
     applications: ['Near-net infiltrated blanks', 'Profiled segments and plates', 'Special welding fixtures']
   }

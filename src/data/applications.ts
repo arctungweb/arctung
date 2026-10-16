@@ -3,6 +3,7 @@ import imgSeam from '../assets/factory/03-sintering-workshop.webp';
 import imgRW from '../assets/factory/07-product-threaded-electrodes.jpg';
 import imgEdm from '../assets/factory/09-workshop-materials.jpg';
 import imgHeat from '../assets/factory/01-infiltration-furnace.webp';
+import type { BodySection } from './products';
 
 export interface Application {
   slug: string;
@@ -15,6 +16,7 @@ export interface Application {
   imageAlt: string;
   keyPoints: [string, string][];
   productSlugs: string[];
+  body?: BodySection[];
 }
 
 export const applications: Application[] = [
@@ -36,6 +38,29 @@ export const applications: Application[] = [
       ['Two grades by weld schedule', 'W/Cu 75/25 for maximum wear life; W/Cu 70/30 when the schedule needs more current (≈ 42% IACS).'],
       ['Fast reorder', 'Standard sizes ship in 10–14 days with no MOQ — keep one spare wheel on the shelf instead of ten.']
     ],
+    body: [
+      {
+        heading: 'Matching the wheel to the machine',
+        paragraphs: [
+          'Seam wheels are consumed parts, and the machines that run them are long-lived: longitudinal and transverse seamers, drum and can-body lines, tube mills. Your shaft, drive method and arm geometry are fixed capital — the wheel must fit them, not the other way round. That is why every wheel we cut starts from your drawing, or from a measurement of the worn wheel if the drawing is gone.',
+          'Drive method matters for profile selection: gear-driven wheels put torsional loads through the bore and keyway, while friction or knurl-driven wheels put them through the face. We cut the keyway and the face profile to match whichever drive your machine uses.'
+        ]
+      },
+      {
+        heading: 'Weld schedule vs alloy choice',
+        paragraphs: [
+          'The schedule and the alloy are one decision, not two. Higher current schedules (thick stock, coated strip, fast travel) run cooler on the more conductive 70/30 face; high-force, long-campaign schedules hold profile longer on 75/25. If your nugget or seam consistency problem is heat, move conductivity up; if it is geometry drift, move hardness up.',
+          'Zinc and other coatings change the calculation: a softer face picks up coating material, glazes, and starts sticking to the strip. This is the single most common reason lines migrate from Cr-Cu or Be-Cu wheels to tungsten copper.'
+        ]
+      },
+      {
+        heading: 'Keeping spare wheels to a minimum',
+        paragraphs: [
+          'Because replacements are cut to the same drawing every time, you can hold one spare per station instead of a full set. Our standard lead time is 10–14 days with no minimum order, so the reorder trigger is diameter wear — not fear of the supply chain.',
+          'For lines that consume wheels weekly, we quote standing schedules: agreed dimensions, agreed profile, shipments on your consumption rhythm with each batch carrying its inspection record.'
+        ]
+      }
+    ],
     productSlugs: ['electrode-wheels-75-25', 'electrode-wheels-70-30']
   },
   {
@@ -55,6 +80,31 @@ export const applications: Application[] = [
       ['Threaded to drawing', 'Metric, UNC/UNF or special thread forms, batch-verified with thread gauges.'],
       ['Stock for in-house machining', 'Rods and blocks in W/Cu 75/25 and 70/30 for caps, holders and shanks.'],
       ['Robot-cell ready', 'Repeatable dimensions keep automated stations running without re-teaching.']
+    ],
+    body: [
+      {
+        heading: 'Electrode shapes and what they solve',
+        paragraphs: [
+          'The consumable geometry is chosen by the weld, not the catalogue: radius-face caps for general spot work, flat and domed faces for projection dies, tapered shanks for robot guns where tip-dress access is tight. We cut all of them from the same infiltrated stock — which means the alloy you validated is the alloy you keep getting, order after order.',
+          'Internal cooling matters as much as face shape. We machine water passages to your holder specification, because a W/Cu face only delivers its thermal advantage when the heat it conducts out actually leaves the electrode.'
+        ]
+      },
+      {
+        heading: 'Coated and high-strength steels',
+        paragraphs: [
+          'Galvanized and Zn-Al coated sheet is where copper-alloy electrodes historically died young: zinc alloys into the face, builds an insulating glaze, and forces earlier dressing. The tungsten skeleton in W/Cu resists that pickup mechanically — the face stays metallic longer, dressing intervals stretch out, and nugget size stops wandering across the shift.',
+          'On high-strength steels the load is mechanical instead: higher electrode force drives face growth on soft alloys. This is the case for W/Cu 75/25 facings — the selection logic is covered in detail in our alloy comparison guide.'
+        ],
+        links: [{ label: 'W75Cu25 vs W70Cu30 selection guide', href: '/guides/w75cu25-vs-w70cu30/' }]
+      },
+      {
+        heading: 'Consumption rhythms we can serve',
+        paragraphs: [
+          'Automated gun cells consume electrodes on a predictable cycle, and our supply model is built around it: no minimum order, 10–14 days on standard shapes, and repeat orders machined to the same drawing revision every time. For robot cells running mixed consumables, thread form and shank geometry stay identical across batches — verified with thread gauges and dimensional records.',
+          'Shops that machine their own caps and shanks buy our rods and blocks instead: stock shapes in both grades, rough-machined or ground, shipped vacuum-packed with foam lining.'
+        ],
+        links: [{ label: 'Electrode rods & blocks', href: '/products/rods-blocks/' }]
+      }
     ],
     productSlugs: ['threaded-electrodes', 'rods-blocks']
   },
@@ -76,6 +126,30 @@ export const applications: Application[] = [
       ['Machinable stock', 'Rods, blocks and blanks supplied rough-machined or ground to your spec.'],
       ['Weekly reorder friendly', 'No MOQ and a 10–14 day lead time match real EDM consumption cycles.']
     ],
+    body: [
+      {
+        heading: 'Why wear rate decides electrode economics',
+        paragraphs: [
+          'Die-sinking EDM cost is mostly electrode cost: the electrode wears into a mirror of the cavity, and every re-cut for finishing needs a fresh face or a fresh electrode. The tungsten skeleton in W/Cu holds fine detail — sharp corners, thin ribs, small holes — through burns where pure copper would round over and graphite would shed particles into the gap.',
+          'Low wear also means fewer electrode copies per cavity. For deep, narrow features — the classic hard case — W/Cu is often the only material that finishes the burn without a redress cycle.'
+        ]
+      },
+      {
+        heading: 'Against graphite and pure copper',
+        paragraphs: [
+          'Graphite is cheap and fast for roughing, but it cannot hold a knife edge, and its wear ratio on carbide work is poor. Pure copper conducts beautifully but wears too fast for fine finishing and machines poorly in small sections. W/Cu sits where those two fail: it holds detail like graphite wishes it could, and survives burns copper cannot.',
+          'Standard practice in die shops: graphite or copper for roughing passes, W/Cu for the finishing electrodes that set the final contour and corner radii.'
+        ]
+      },
+      {
+        heading: 'Stock formats that match EDM workflows',
+        paragraphs: [
+          'EDM consumption is continuous and lumpy: one week you need six small rods, the next week a block for a big cavity repair. Our no-MOQ stock model exists for exactly this rhythm — rods and blocks in both grades, rough-machined or ground, shipping in 10–14 days.',
+          'For recurring electrode sections, we hold your drawing and cut repeat batches to the same dimensions, so the only thing that changes between orders is the delivery date.'
+        ],
+        links: [{ label: 'Electrode rods & blocks', href: '/products/rods-blocks/' }]
+      }
+    ],
     productSlugs: ['rods-blocks', 'custom-parts']
   },
   {
@@ -95,6 +169,30 @@ export const applications: Application[] = [
       ['Semiconductor heat sinks', 'Mainstream grades are ≥80% W — outside our export range and inside export-control descriptions.'],
       ['The 80% line', 'We supply sub-80% tungsten alloys only: routine customs, no license delays, predictable delivery.'],
       ['Ask anyway', 'Not sure where your composition falls? Send the spec — we answer within 24 hours.']
+    ],
+    body: [
+      {
+        heading: 'The material logic on each side',
+        paragraphs: [
+          'Both applications buy the same two properties: the tungsten skeleton for arc and erosion resistance, the copper phase for thermal and electrical transport. Heat-sink work leans on the copper — W/Cu spreads heat in power modules while its expansion rate sits between silicon and copper, lowering thermal-cycle stress on soldered joints. Contact work leans on the tungsten — the skeleton resists arc erosion that would crater a pure copper contact in thousands of operations.',
+          'That balance is why W/Cu grades span such different industries, and also why the tungsten percentage is the first thing every buyer in these fields asks about.'
+        ]
+      },
+      {
+        heading: 'Why our catalogue stops at 80% tungsten',
+        paragraphs: [
+          'Mainstream semiconductor heat-sink grades (W90Cu10 and above) and many high-voltage contact grades fall at or above 80% tungsten — compositions that sit inside China\'s dual-use export-control descriptions. Supplying them is a licensing process we deliberately do not run, because our whole export model is built on routine customs: no licenses, no delays, no surprises for your broker.',
+          'Below that line, W/Cu 75/25 and 70/30 ship as ordinary industrial goods with standard documentation — commercial invoice, packing list, certificate of origin where needed — and clear customs on the usual HS classification with no export-license step.'
+        ]
+      },
+      {
+        heading: 'If your spec lands outside the range',
+        paragraphs: [
+          'Send it anyway. For medium-voltage contact components in sub-80% compositions we can quote to drawing after checking the specification against our export range. For high-tungsten heat sinks we will tell you directly that we are not the supplier — and we will not waste your RFQ cycle pretending otherwise.',
+          'What we can always offer, in our two grades, is the machining side: contact assemblies, fixture components and heat-spreader parts cut to drawing where the composition allows. Our custom-parts page covers what our floor can take on.'
+        ],
+        links: [{ label: 'Custom W/Cu parts', href: '/products/custom-parts/' }]
+      }
     ],
     productSlugs: ['custom-parts']
   }

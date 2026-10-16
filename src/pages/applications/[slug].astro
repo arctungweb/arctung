@@ -90,6 +90,36 @@ const breadcrumbLd = {
     </div>
   </section>
 
+  <!-- IN-DEPTH -->
+  {application.body && (
+    <section class="border-t border-steel-700/60">
+      <div class="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-20">
+        <SectionHead kicker="In depth" title="Application notes" />
+        {application.body.map((section) => (
+          <div class="mt-10">
+            <h2 class="font-display text-xl font-bold tracking-tight text-tung-100">{section.heading}</h2>
+            {section.paragraphs.map((para) => (
+              <p class="mt-4 leading-relaxed text-tung-300">{para}</p>
+            ))}
+            {section.bullets && (
+              <ul class="mt-4 list-disc space-y-2 pl-6 text-tung-300">
+                {section.bullets.map((bullet) => <li>{bullet}</li>)}
+              </ul>
+            )}
+            {section.links && section.links.length > 0 && (
+              <p class="mt-4 text-sm text-tung-300">
+                Related:
+                {section.links.map((link) => (
+                  <a href={link.href} class="ml-2 text-copper-300 underline underline-offset-4 hover:text-copper-200">{link.label}</a>
+                ))}
+              </p>
+            )}
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+
   <!-- RELATED PRODUCTS -->
   <section class="border-t border-steel-700/60 bg-steel-900">
     <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20">
