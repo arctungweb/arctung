@@ -1,0 +1,62 @@
+---
+import Base from '../../layouts/Base.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import { SITE } from '../../config';
+import { getCollection } from 'astro:content';
+
+const guides = (await getCollection('guides')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url },
+    { '@type': 'ListItem', position: 2, name: 'Guides', item: `${SITE.url}/guides/` }
+  ]
+};
+
+const fmt = (d: Date) => d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+
+<Base title="Welding Electrode Guides — Alloy Selection & Application Notes | ArcTung" description="Practical engineering guides for tungsten copper buyers: choosing between W75Cu25 and W70Cu30, CuW vs pure tungsten, seam wheel maintenance and import logistics. From a factory-direct supplier." jsonLd={[breadcrumbLd]}>
+  <section class="border-b border-steel-700/60 bg-steel-900">
+    <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20">
+      <SectionHead
+        as="h1"
+        kicker="Guides"
+        title="Engineering notes for tungsten copper buyers"
+        lead="Selection logic, material comparisons and application know-how from the factory floor. Written for the people who specify and buy electrodes — not for search engines."
+      />
+    </div>
+  </section>
+
+  <section class="bg-steel-950">
+    <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6">
+      <div class="grid gap-6 md:grid-cols-2">
+        {guides.map((guide) => (
+          <a
+            href={`/guides/${guide.id}/`}
+            class="hairline group flex flex-col rounded-sm bg-steel-900 p-8 transition-colors hover:border-copper-500/60"
+          >
+            <p class="font-mono text-xs uppercase tracking-[0.28em] text-copper-400">{guide.data.tag}</p>
+            <h2 class="mt-4 font-display text-xl font-bold leading-snug tracking-tight text-tung-100 group-hover:text-copper-200">
+              {guide.data.title}
+            </h2>
+            <p class="mt-4 flex-1 leading-relaxed text-tung-300">{guide.data.description}</p>
+            <p class="mt-6 font-mono text-xs uppercase tracking-widest text-tung-500">
+              {fmt(guide.data.pubDate)} · Read guide →
+            </p>
+          </a>
+        ))}
+      </div>
+
+      <div class="mt-14 border-t border-steel-700/60 pt-8">
+        <p class="text-sm leading-relaxed text-tung-300">
+          Looking for something specific? Most questions are answered on the <a href="/faq" class="text-copper-300 underline underline-offset-4 hover:text-copper-200">FAQ page</a> — or <a href="/contact" class="text-copper-300 underline underline-offset-4 hover:text-copper-200">send us your drawing</a> and ask directly.
+        </p>
+      </div>
+    </div>
+  </section>
+</Base>
