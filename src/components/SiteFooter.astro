@@ -2,17 +2,30 @@
 import { SITE } from '../config';
 import { products } from '../data/products';
 import { applications } from '../data/applications';
+import { getCollection } from 'astro:content';
 
 const year = new Date().getFullYear();
+const guides = (await getCollection('guides'))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 6);
 ---
 
 <footer class="border-t border-steel-700/60 bg-steel-900">
-  <div class="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-5">
+  <div class="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-6">
     <div>
       <p class="font-display text-xl font-bold text-tung-50">Arc<span class="text-copper-400">Tung</span></p>
       <p class="mt-3 max-w-xs text-sm leading-relaxed text-tung-300">
         Tungsten-copper welding consumables, factory-direct. No MOQ, 10–14 day standard lead time, worldwide shipping.
       </p>
+    </div>
+    <div>
+      <p class="font-mono text-[0.72rem] uppercase tracking-[0.2em] text-tung-500">Guides</p>
+      <ul class="mt-4 space-y-2.5 text-sm">
+        {guides.map((g) => (
+          <li><a class="text-tung-300 transition-colors hover:text-copper-300" href={`/guides/${g.id}/`}>{g.data.tag}</a></li>
+        ))}
+        <li><a class="text-copper-300 transition-colors hover:text-copper-200" href="/guides">All guides →</a></li>
+      </ul>
     </div>
     <div>
       <p class="font-mono text-[0.72rem] uppercase tracking-[0.2em] text-tung-500">Products</p>
