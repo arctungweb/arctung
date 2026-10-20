@@ -1,5 +1,5 @@
 ---
-title: "RWMA Electrode Material Classes Explained: A Buyer's Guide"
+title: "RWMA Electrode Classes Explained: A Buyer's Guide"
 description: 'RWMA classes sort electrode materials from hard coppers to refractory composites. Where tungsten copper fits (Class 10 and 11) and how buyers should use them.'
 pubDate: 2026-10-17
 tag: 'Material selection'
