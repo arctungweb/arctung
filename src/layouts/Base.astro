@@ -14,6 +14,14 @@ interface Props {
 const { title, description, jsonLd = [], noindex = false } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 
+// SERP title budget: Google truncates around 65 chars — word-boundary trim.
+let serpTitle = title;
+if (serpTitle.length > 65) {
+  const cut = serpTitle.slice(0, 65);
+  const sp = cut.lastIndexOf(' ');
+  serpTitle = (sp > 40 ? cut.slice(0, sp) : cut).trim();
+}
+
 // Google truncates meta descriptions around 155-160 chars — cut at a word
 // boundary instead of letting the SERP do it mid-sentence.
 function truncateDesc(value: string, max = 160): string {
@@ -52,7 +60,7 @@ const allLd = [orgLd, ...jsonLd];
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title}</title>
+    <title>{serpTitle}</title>
     <meta name="description" content={desc} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
     <link rel="canonical" href={canonical} />
