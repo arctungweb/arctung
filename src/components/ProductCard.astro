@@ -9,7 +9,7 @@ interface Props {
 const { product } = Astro.props;
 ---
 
-<a href={`/products/${product.slug}`} class="group hairline block overflow-hidden rounded-sm bg-steel-900 transition-all hover:border-copper-500/60">
+<a href={`/products/${product.slug}/`} class="group hairline block overflow-hidden rounded-sm bg-steel-900 transition-all hover:border-copper-500/60">
   <div class="relative overflow-hidden">
     <Image
       src={product.image}

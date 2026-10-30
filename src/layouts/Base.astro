@@ -14,13 +14,39 @@ interface Props {
 const { title, description, jsonLd = [], noindex = false } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 
-// SERP title budget: Google truncates around 65 chars — word-boundary trim.
-let serpTitle = title;
-if (serpTitle.length > 65) {
-  const cut = serpTitle.slice(0, 65);
-  const sp = cut.lastIndexOf(' ');
-  serpTitle = (sp > 40 ? cut.slice(0, sp) : cut).trim();
+// Keep long titles meaningful: preserve a short brand suffix and trim only the
+// descriptive part at a word boundary. This avoids endings such as "Why" or
+// a bare "|" when a guide headline exceeds the SERP budget.
+function truncateTitle(value: string, max = 65): string {
+  if (value.length <= max) return value;
+
+  const brandStart = value.search(/\s(?:\||—)\sArcTung/);
+  const core = brandStart > 0 ? value.slice(0, brandStart) : value;
+  const suffix = brandStart > 0 ? ' | ArcTung' : '';
+
+  // Guide headlines often use "Topic: explanatory subtitle". Prefer the
+  // complete topic over clipping halfway through the subtitle.
+  const colon = core.indexOf(':');
+  if (colon > 24) {
+    const topic = core.slice(0, colon).trim();
+    if (topic.length + suffix.length <= max) return `${topic}${suffix}`;
+    if (topic.length <= max) return topic;
+  }
+
+  // A complete unbranded title is better than a clipped title with branding.
+  if (core.length <= max) return core;
+
+  const budget = max - suffix.length;
+  const cut = core.slice(0, budget + 1);
+  const space = cut.lastIndexOf(' ');
+  const trimmed = (space > 35 ? cut.slice(0, space) : core.slice(0, budget))
+    .trim()
+    .replace(/[|:;,\-–—]+$/, '')
+    .trim();
+
+  return `${trimmed}${suffix}`;
 }
+const serpTitle = truncateTitle(title);
 
 // Google truncates meta descriptions around 155-160 chars — cut at a word
 // boundary instead of letting the SERP do it mid-sentence.

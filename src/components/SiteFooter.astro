@@ -24,14 +24,14 @@ const guides = (await getCollection('guides'))
         {guides.map((g) => (
           <li><a class="text-tung-300 transition-colors hover:text-copper-300" href={`/guides/${g.id}/`}>{g.data.tag}</a></li>
         ))}
-        <li><a class="text-copper-300 transition-colors hover:text-copper-200" href="/guides">All guides →</a></li>
+        <li><a class="text-copper-300 transition-colors hover:text-copper-200" href="/guides/">All guides →</a></li>
       </ul>
     </div>
     <div>
       <p class="font-mono text-[0.72rem] uppercase tracking-[0.2em] text-tung-500">Products</p>
       <ul class="mt-4 space-y-2.5 text-sm">
         {products.map((p) => (
-          <li><a class="text-tung-300 transition-colors hover:text-copper-300" href={`/products/${p.slug}`}>{p.name}</a></li>
+          <li><a class="text-tung-300 transition-colors hover:text-copper-300" href={`/products/${p.slug}/`}>{p.name}</a></li>
         ))}
       </ul>
     </div>
@@ -39,17 +39,17 @@ const guides = (await getCollection('guides'))
       <p class="font-mono text-[0.72rem] uppercase tracking-[0.2em] text-tung-500">Applications</p>
       <ul class="mt-4 space-y-2.5 text-sm">
         {applications.map((a) => (
-          <li><a class="text-tung-300 transition-colors hover:text-copper-300" href={`/applications/${a.slug}`}>{a.shortName}</a></li>
+          <li><a class="text-tung-300 transition-colors hover:text-copper-300" href={`/applications/${a.slug}/`}>{a.shortName}</a></li>
         ))}
       </ul>
     </div>
     <div>
       <p class="font-mono text-[0.72rem] uppercase tracking-[0.2em] text-tung-500">Company</p>
       <ul class="mt-4 space-y-2.5 text-sm">
-        <li><a class="text-tung-300 transition-colors hover:text-copper-300" href="/factory">Factory &amp; Quality</a></li>
-        <li><a class="text-tung-300 transition-colors hover:text-copper-300" href="/faq">FAQ &amp; Specs</a></li>
-        <li><a class="text-tung-300 transition-colors hover:text-copper-300" href="/tools/electrode-weight-calculator">Weight Calculator</a></li>
-        <li><a class="text-tung-300 transition-colors hover:text-copper-300" href="/contact">Contact</a></li>
+        <li><a class="text-tung-300 transition-colors hover:text-copper-300" href="/factory/">Factory &amp; Quality</a></li>
+        <li><a class="text-tung-300 transition-colors hover:text-copper-300" href="/faq/">FAQ &amp; Specs</a></li>
+        <li><a class="text-tung-300 transition-colors hover:text-copper-300" href="/tools/electrode-weight-calculator/">Weight Calculator</a></li>
+        <li><a class="text-tung-300 transition-colors hover:text-copper-300" href="/contact/">Contact</a></li>
       </ul>
     </div>
     <div>

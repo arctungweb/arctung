@@ -38,11 +38,13 @@ const breadcrumbLd = {
     { '@type': 'ListItem', position: 3, name: application.shortName, item: `${SITE.url}/applications/${application.slug}/` }
   ]
 };
+
+const metaDescription = `${application.tagline}. ${application.keyPoints[0][1]}`;
 ---
 
 <Base
   title={`${application.name} | ArcTung W/Cu Electrodes`}
-  description={`${application.tagline}. ${application.description[0].slice(0, 140)}`}
+  description={metaDescription}
   jsonLd={[pageLd, breadcrumbLd]}
 >
   <!-- HERO -->
@@ -139,7 +141,7 @@ const breadcrumbLd = {
         </h2>
         <p class="mt-2 text-tung-300">Send alloy, dimensions and quantity — quote back within 24 hours, held for 7 days.</p>
       </div>
-      <a href="/contact" class="inline-flex shrink-0 items-center justify-center gap-2 bg-copper-500 px-7 py-3.5 font-mono text-sm uppercase tracking-widest text-steel-950 transition-colors hover:bg-copper-400">
+      <a href="/contact/" class="inline-flex shrink-0 items-center justify-center gap-2 bg-copper-500 px-7 py-3.5 font-mono text-sm uppercase tracking-widest text-steel-950 transition-colors hover:bg-copper-400">
         Start your RFQ
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>

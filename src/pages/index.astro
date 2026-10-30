@@ -48,7 +48,7 @@ const websiteLd = {
       </p>
 
       <div class="rise d3 mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
-        <a href="/contact" class="inline-flex items-center justify-center gap-2 bg-copper-500 px-7 py-3.5 font-mono text-sm uppercase tracking-widest text-steel-950 transition-colors hover:bg-copper-400">
+        <a href="/contact/" class="inline-flex items-center justify-center gap-2 bg-copper-500 px-7 py-3.5 font-mono text-sm uppercase tracking-widest text-steel-950 transition-colors hover:bg-copper-400">
           Request a quote
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
@@ -108,7 +108,7 @@ const websiteLd = {
       />
       <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {applications.map((a) => (
-          <a href={`/applications/${a.slug}`} class="group hairline block overflow-hidden rounded-sm bg-steel-950 transition-all hover:border-copper-500/60">
+          <a href={`/applications/${a.slug}/`} class="group hairline block overflow-hidden rounded-sm bg-steel-950 transition-all hover:border-copper-500/60">
             <div class="relative overflow-hidden">
               <Image src={a.image} alt={a.imageAlt} width={520} height={300} class="h-36 w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
             </div>
@@ -185,7 +185,7 @@ const websiteLd = {
       ))}
     </div>
     <p class="mt-8">
-      <a href="/factory" class="inline-flex items-center gap-2 font-mono text-sm uppercase tracking-widest text-copper-300 hover:text-copper-400">
+      <a href="/factory/" class="inline-flex items-center gap-2 font-mono text-sm uppercase tracking-widest text-copper-300 hover:text-copper-400">
         Tour the factory
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
@@ -204,7 +204,7 @@ const websiteLd = {
         Alloy, dimensions, quantity — that is all we need. Quotes held for 7 days, firm pricing.
       </p>
       <div class="rise d3 mt-8">
-        <a href="/contact" class="inline-flex items-center justify-center gap-2 bg-copper-500 px-8 py-4 font-mono text-sm uppercase tracking-widest text-steel-950 transition-colors hover:bg-copper-400">
+        <a href="/contact/" class="inline-flex items-center justify-center gap-2 bg-copper-500 px-8 py-4 font-mono text-sm uppercase tracking-widest text-steel-950 transition-colors hover:bg-copper-400">
           Start your RFQ
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
