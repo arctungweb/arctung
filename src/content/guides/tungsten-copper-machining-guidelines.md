@@ -18,6 +18,32 @@ Infiltrated W/Cu is a two-phase material, and that is the key to everything abou
 
 Two habits separate good W/Cu work from scrapped blanks: take light finishing passes so the copper phase is not torn out of the surface, and support slender sections properly. The composite is stiff, but it chatters on thin, poorly clamped work just like any dense metal.
 
+## Starting parameters
+
+The tables below are shop-floor starting points for infiltrated W/Cu at 70/30 and 75/25, on a rigid machine with coated carbide and flood coolant. They are a place to begin, not a guarantee — copper content, blank porosity and your own rigidity all shift the sweet spot, so take a test cut and adjust from there. The higher figure in each range suits the leaner 75/25 grade.
+
+**Turning**
+
+| Operation | Surface speed | Feed | Depth of cut | Insert | Target Ra |
+| --- | --- | --- | --- | --- | --- |
+| Rough turning | 60–90 m/min | 0.15–0.30 mm/rev | 1.5–3.0 mm | K10 / C2, positive rake | 1.6–3.2 µm |
+| Finish turning | 90–140 m/min | 0.05–0.12 mm/rev | 0.2–0.5 mm | K10, sharp edge, small nose radius | 0.8–1.6 µm |
+| Facing a wheel face | 80–120 m/min | 0.08–0.15 mm/rev | 0.3–0.8 mm | K10 | 1.2–2.0 µm |
+
+**Milling and drilling**
+
+| Operation | Surface speed | Feed | Notes |
+| --- | --- | --- | --- |
+| Peripheral milling | 60–100 m/min | 0.05–0.12 mm/tooth | 4-flute carbide, climb cut for finish |
+| Slotting / pocketing | 50–80 m/min | 0.04–0.08 mm/tooth | Ramp in, never plunge straight down |
+| Drilling | 25–45 m/min | 0.05–0.12 mm/rev | Peck deeper than 2× diameter; clear chips |
+| Reaming / finish boring | 15–25 m/min | 0.10–0.25 mm/rev | Size comes from here, not from the drill |
+| Tapping | 8–15 m/min | — | Sharp machine tap, cutting oil, no dry run |
+
+Three numbers are worth remembering out of all of that. **Surface speed above roughly 150 m/min is where copper starts smearing** across the tungsten skeleton and the finish goes glossy and torn. **Finish depth of cut below 0.2 mm** rubs rather than cuts and work-hardens the surface. And **drilling without pecking** is the single most common cause of a broken drill in W/Cu — the chip does not clear, and dense material punishes the retraction.
+
+If a cut is squealing and the insert is wearing on the flank rather than the nose, you are too fast for the rigidity you have. Drop speed before you change geometry.
+
 ## Threading W/Cu
 
 Cutting a clean thread in tungsten copper is a quality-control problem more than a machining problem. The copper phase tears easily, and a torn thread root becomes a stress riser exactly where vibration concentrates — a welding gun shank, a threaded electrode stud, a fixture bolt.

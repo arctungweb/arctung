@@ -45,8 +45,8 @@ const appLd = {
 ---
 
 <Base
-  title="Tungsten Copper Weight Calculator for W/Cu Grades"
-  description="Free weight calculator for tungsten-copper electrode wheels, rods and blocks. Pick W/Cu 75/25 or 70/30, enter your dimensions, get the weight in seconds — with volume-break hints."
+  title="Tungsten Weight Calculator for W/Cu 75/25 & 70/30"
+  description="Free tungsten weight calculator for W/Cu 75/25 and 70/30 electrode wheels, rods and blocks. Enter dimensions, get kilograms instantly — plus a reference table of standard sizes."
   jsonLd={[faqLd, appLd]}
 >
   <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-24">
@@ -161,6 +161,82 @@ const appLd = {
           </ul>
         </div>
       </aside>
+    </div>
+  </section>
+
+  <section class="border-t border-steel-700/60">
+    <div class="mx-auto max-w-7xl px-4 py-20 sm:px-6">
+      <SectionHead
+        as="h2"
+        kicker="Reference table"
+        title="Standard sizes, already worked out"
+        lead="Nominal weights for the wheel and rod sizes we cut most often, calculated from the same densities the calculator uses. Treat them as a sanity check on a quote or a fast mass estimate on the shop floor."
+      />
+
+      <div class="mt-10 grid gap-12 lg:grid-cols-2">
+        <div>
+          <h3 class="font-display text-lg font-semibold text-tung-50">Electrode wheels (disc)</h3>
+          <div class="mt-4 overflow-x-auto">
+            <table class="w-full border-collapse text-sm">
+              <thead>
+                <tr class="border-b border-steel-700 text-left font-mono text-[0.72rem] uppercase tracking-widest text-tung-500">
+                  <th class="py-2.5 pr-4 font-normal">OD × thickness</th>
+                  <th class="py-2.5 pr-4 font-normal">Volume</th>
+                  <th class="py-2.5 pr-4 font-normal">75/25</th>
+                  <th class="py-2.5 font-normal">70/30</th>
+                </tr>
+              </thead>
+              <tbody class="text-tung-300">
+                <tr class="border-b border-steel-800/60"><td class="py-2.5 pr-4">100 × 20 mm</td><td class="py-2.5 pr-4">157 cm³</td><td class="py-2.5 pr-4">2.4 kg</td><td class="py-2.5">2.3 kg</td></tr>
+                <tr class="border-b border-steel-800/60"><td class="py-2.5 pr-4">150 × 25 mm</td><td class="py-2.5 pr-4">442 cm³</td><td class="py-2.5 pr-4">6.7 kg</td><td class="py-2.5">6.4 kg</td></tr>
+                <tr class="border-b border-steel-800/60"><td class="py-2.5 pr-4">200 × 30 mm</td><td class="py-2.5 pr-4">942 cm³</td><td class="py-2.5 pr-4">14.3 kg</td><td class="py-2.5">13.7 kg</td></tr>
+                <tr class="border-b border-steel-800/60"><td class="py-2.5 pr-4">250 × 40 mm</td><td class="py-2.5 pr-4">1,963 cm³</td><td class="py-2.5 pr-4">29.8 kg</td><td class="py-2.5">28.5 kg</td></tr>
+                <tr class="border-b border-steel-800/60"><td class="py-2.5 pr-4">300 × 50 mm</td><td class="py-2.5 pr-4">3,534 cm³</td><td class="py-2.5 pr-4">53.7 kg</td><td class="py-2.5">51.2 kg</td></tr>
+                <tr class="border-b border-steel-800/60"><td class="py-2.5 pr-4">350 × 60 mm</td><td class="py-2.5 pr-4">5,774 cm³</td><td class="py-2.5 pr-4">87.7 kg</td><td class="py-2.5">83.7 kg</td></tr>
+                <tr><td class="py-2.5 pr-4">400 × 60 mm</td><td class="py-2.5 pr-4">7,540 cm³</td><td class="py-2.5 pr-4">114.6 kg</td><td class="py-2.5">109.3 kg</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="font-display text-lg font-semibold text-tung-50">Rods (100 mm length)</h3>
+          <div class="mt-4 overflow-x-auto">
+            <table class="w-full border-collapse text-sm">
+              <thead>
+                <tr class="border-b border-steel-700 text-left font-mono text-[0.72rem] uppercase tracking-widest text-tung-500">
+                  <th class="py-2.5 pr-4 font-normal">Diameter × length</th>
+                  <th class="py-2.5 pr-4 font-normal">Volume</th>
+                  <th class="py-2.5 pr-4 font-normal">75/25</th>
+                  <th class="py-2.5 font-normal">70/30</th>
+                </tr>
+              </thead>
+              <tbody class="text-tung-300">
+                <tr class="border-b border-steel-800/60"><td class="py-2.5 pr-4">Ø20 × 100 mm</td><td class="py-2.5 pr-4">31 cm³</td><td class="py-2.5 pr-4">0.48 kg</td><td class="py-2.5">0.46 kg</td></tr>
+                <tr class="border-b border-steel-800/60"><td class="py-2.5 pr-4">Ø30 × 100 mm</td><td class="py-2.5 pr-4">71 cm³</td><td class="py-2.5 pr-4">1.07 kg</td><td class="py-2.5">1.02 kg</td></tr>
+                <tr class="border-b border-steel-800/60"><td class="py-2.5 pr-4">Ø40 × 100 mm</td><td class="py-2.5 pr-4">126 cm³</td><td class="py-2.5 pr-4">1.91 kg</td><td class="py-2.5">1.82 kg</td></tr>
+                <tr class="border-b border-steel-800/60"><td class="py-2.5 pr-4">Ø50 × 100 mm</td><td class="py-2.5 pr-4">196 cm³</td><td class="py-2.5 pr-4">2.98 kg</td><td class="py-2.5">2.85 kg</td></tr>
+                <tr class="border-b border-steel-800/60"><td class="py-2.5 pr-4">Ø63 × 100 mm</td><td class="py-2.5 pr-4">312 cm³</td><td class="py-2.5 pr-4">4.74 kg</td><td class="py-2.5">4.52 kg</td></tr>
+                <tr><td class="py-2.5 pr-4">Ø80 × 100 mm</td><td class="py-2.5 pr-4">503 cm³</td><td class="py-2.5 pr-4">7.64 kg</td><td class="py-2.5">7.29 kg</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="mt-4 text-sm leading-relaxed text-tung-400">
+            For any length, scale linearly: a Ø50 rod weighs 0.0298 kg per mm of length in 75/25.
+          </p>
+        </div>
+      </div>
+
+      <div class="hairline mt-10 rounded-sm bg-steel-900 p-6">
+        <p class="font-mono text-[0.72rem] uppercase tracking-widest text-tung-500">The formula behind it</p>
+        <p class="mt-3 text-sm leading-relaxed text-tung-300">
+          Volume of a disc or rod is <span class="font-mono text-tung-100">π/4 × d² × h</span>; for a block it is <span class="font-mono text-tung-100">l × w × h</span>. Divide by 1,000 to convert mm³ to cm³, multiply by the grade density, then divide by 1,000 again for kilograms. In one line for a wheel:
+        </p>
+        <p class="mt-3 font-mono text-sm text-copper-300">weight_kg = 0.0007854 × OD² × thickness × density / 1000</p>
+        <p class="mt-3 text-sm leading-relaxed text-tung-300">
+          With OD and thickness in millimetres and density in g/cm³. That is exactly what this page runs — nothing hidden, no rounding before the final step.
+        </p>
+      </div>
     </div>
   </section>
 
