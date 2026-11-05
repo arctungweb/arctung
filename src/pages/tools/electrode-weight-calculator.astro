@@ -20,6 +20,18 @@ const faqs: [string, string][] = [
   [
     'Can I get a price from this weight?',
     'Quotes are held for 7 days and follow the tungsten market, so we do not publish a fixed $/kg. Send the calculated weight with your drawing via the contact page and you will have a formal quotation — FOB Shenzhen/Nansha — within one business day.'
+  ],
+  [
+    'Can I use this for tungsten carbide or pure tungsten?',
+    'Yes for estimating. The material dropdown carries reference densities for pure tungsten (19.25 g/cm³), monolithic tungsten carbide (15.6), a 10% cobalt carbide grade (14.5) and a 90 W heavy alloy (17.0). The geometry and the arithmetic are identical — only the density changes. We machine W/Cu 75/25 and 70/30 only, so a carbide figure is a comparison, not something we can quote.'
+  ],
+  [
+    'How much does tungsten weigh per cubic inch?',
+    'Pure tungsten is 0.695 lb/in³; W/Cu 75/25 is 0.549; W/Cu 70/30 is 0.524; monolithic tungsten carbide is 0.564. Multiply by the part volume in cubic inches. Converting from a metric drawing first is usually safer — 1 in³ = 16.387 cm³ — because a small diameter error compounds three times in a volume.'
+  ],
+  [
+    'The drawing gives me a volume, not dimensions. What now?',
+    'Multiply directly: kilograms = volume in cm³ × density / 1,000. For pounds, divide the kilogram result by 0.4536. If the volume is in cubic inches, multiply by 16.387 first to get cm³.'
   ]
 ];
 
@@ -36,7 +48,7 @@ const faqLd = {
 const appLd = {
   '@context': 'https://schema.org',
   '@type': 'WebApplication',
-  name: 'Tungsten Copper Weight Calculator',
+  name: 'Tungsten Weight Calculator (CuW, Carbide, Pure Tungsten)',
   applicationCategory: 'UtilityApplication',
   operatingSystem: 'Web',
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
@@ -45,16 +57,16 @@ const appLd = {
 ---
 
 <Base
-  title="Tungsten Weight Calculator for W/Cu 75/25 & 70/30"
-  description="Free tungsten weight calculator for W/Cu 75/25 and 70/30 electrode wheels, rods and blocks. Enter dimensions, get kilograms instantly — plus a reference table of standard sizes."
+  title="Tungsten Weight Calculator — CuW, Carbide and Pure Tungsten"
+  description="Work out the weight of tungsten copper, pure tungsten, tungsten carbide or molybdenum parts — wheels, rods and blocks — from dimensions and density."
   jsonLd={[faqLd, appLd]}
 >
   <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-24">
     <SectionHead
       as="h1"
       kicker="Free tool"
-      title="Tungsten copper weight calculator"
-      lead="Estimate the weight of W/Cu 75/25 or 70/30 electrode wheels, rods and blocks before you request a quote. Nominal dimensions, typical grade densities — no signup."
+      title="Tungsten weight calculator"
+      lead="Estimate the weight of W/Cu 75/25 or 70/30 electrode wheels, rods and blocks — or check a reference material like pure tungsten, tungsten carbide or molybdenum — before you request a quote. Nominal dimensions, typical densities, no signup."
     />
 
     <div class="grid gap-12 lg:grid-cols-5">
@@ -70,10 +82,21 @@ const appLd = {
               </select>
             </label>
             <label class="block text-sm text-tung-300">
-              Grade
+              Material
               <select id="grade" class="mt-1.5 w-full rounded-sm border border-steel-700 bg-steel-950 px-3 py-2.5 text-tung-50">
-                <option value="15.2">W/Cu 75/25 (≈ 15.2 g/cm³)</option>
-                <option value="14.5">W/Cu 70/30 (≈ 14.5 g/cm³)</option>
+                <optgroup label="Copper tungsten — our grades">
+                  <option value="15.2">W/Cu 75/25 — 15.2 g/cm³</option>
+                  <option value="14.5">W/Cu 70/30 — 14.5 g/cm³</option>
+                </optgroup>
+                <optgroup label="Reference materials — not stocked">
+                  <option value="19.25">Pure tungsten — 19.25 g/cm³</option>
+                  <option value="15.6">Tungsten carbide (WC) — 15.6 g/cm³</option>
+                  <option value="14.5">WC-Co, 10% binder — 14.5 g/cm³</option>
+                  <option value="17.0">Tungsten heavy alloy, 90 W — 17.0 g/cm³</option>
+                  <option value="10.2">Molybdenum — 10.2 g/cm³</option>
+                  <option value="8.96">Copper, ETP — 8.96 g/cm³</option>
+                  <option value="2.70">Aluminium 6061 — 2.70 g/cm³</option>
+                </optgroup>
               </select>
             </label>
           </div>
@@ -127,6 +150,7 @@ const appLd = {
           <p class="font-mono text-[0.72rem] uppercase tracking-widest text-tung-500">How it works</p>
           <ul class="mt-4 space-y-2.5 text-sm leading-relaxed text-tung-300">
             <li>· Nominal dimensions × typical grade density (75/25 ≈ 15.2 g/cm³, 70/30 ≈ 14.5 g/cm³ — see <a class="text-copper-300 hover:text-copper-200" href="/faq/">FAQ specs</a>).</li>
+            <li>· The reference materials in the dropdown are there so you can weigh a mating part or a competing material. We machine W/Cu only — a pure tungsten or carbide figure is an estimate, not a quote.</li>
             <li>· Machined features (bore, edge profiles) remove material, so finished parts typically come in about 5% under the calculated figure.</li>
             <li>· For quotation-exact weights, send us the drawing — <a class="text-copper-300 hover:text-copper-200" href="/contact/">formal quote within one business day</a>.</li>
           </ul>
@@ -242,8 +266,76 @@ const appLd = {
 
   <section class="border-t border-steel-700/60">
     <div class="mx-auto max-w-7xl px-4 py-20 sm:px-6">
-      <SectionHead as="h2" kicker="FAQ" title="Calculator questions" lead="" />
-      <div class="grid gap-8 lg:grid-cols-3">
+      <SectionHead
+        as="h2"
+        kicker="Density table"
+        title="Density by material, in g/cm³ and lb/in³"
+        lead="Same numbers the dropdown uses. Handy when a drawing gives you a volume, or when you are pricing an inch-dimension part and only have a pounds-per-cubic-inch figure."
+      />
+
+      <div class="mt-10 grid gap-12 lg:grid-cols-2">
+        <div class="overflow-x-auto">
+          <table class="w-full border-collapse text-sm">
+            <thead>
+              <tr class="border-b border-steel-700 text-left font-mono text-[0.72rem] uppercase tracking-widest text-tung-500">
+                <th class="py-2.5 pr-4 font-normal">Material</th>
+                <th class="py-2.5 pr-4 font-normal">g/cm³</th>
+                <th class="py-2.5 pr-4 font-normal">lb/in³</th>
+                <th class="py-2.5 font-normal">Note</th>
+              </tr>
+            </thead>
+            <tbody class="text-tung-300">
+              <tr class="border-b border-steel-800/60"><td class="py-2.5 pr-4">W/Cu 75/25</td><td class="py-2.5 pr-4">15.2</td><td class="py-2.5 pr-4">0.549</td><td class="py-2.5">Stocked</td></tr>
+              <tr class="border-b border-steel-800/60"><td class="py-2.5 pr-4">W/Cu 70/30</td><td class="py-2.5 pr-4">14.5</td><td class="py-2.5 pr-4">0.524</td><td class="py-2.5">Stocked</td></tr>
+              <tr class="border-b border-steel-800/60"><td class="py-2.5 pr-4">Pure tungsten</td><td class="py-2.5 pr-4">19.25</td><td class="py-2.5 pr-4">0.695</td><td class="py-2.5">Wrought, 99.95%</td></tr>
+              <tr class="border-b border-steel-800/60"><td class="py-2.5 pr-4">Tungsten carbide (WC)</td><td class="py-2.5 pr-4">15.6</td><td class="py-2.5 pr-4">0.564</td><td class="py-2.5">Monolithic, no binder</td></tr>
+              <tr class="border-b border-steel-800/60"><td class="py-2.5 pr-4">WC-Co, 10% binder</td><td class="py-2.5 pr-4">14.5</td><td class="py-2.5 pr-4">0.524</td><td class="py-2.5">Common tooling grade</td></tr>
+              <tr class="border-b border-steel-800/60"><td class="py-2.5 pr-4">Tungsten heavy alloy, 90 W</td><td class="py-2.5 pr-4">17.0</td><td class="py-2.5 pr-4">0.614</td><td class="py-2.5">W-Ni-Fe class</td></tr>
+              <tr class="border-b border-steel-800/60"><td class="py-2.5 pr-4">Molybdenum</td><td class="py-2.5 pr-4">10.2</td><td class="py-2.5 pr-4">0.368</td><td class="py-2.5">Pure, sintered or wrought</td></tr>
+              <tr class="border-b border-steel-800/60"><td class="py-2.5 pr-4">Copper, ETP</td><td class="py-2.5 pr-4">8.96</td><td class="py-2.5 pr-4">0.324</td><td class="py-2.5">Reference only</td></tr>
+              <tr><td class="py-2.5 pr-4">Aluminium 6061</td><td class="py-2.5 pr-4">2.70</td><td class="py-2.5 pr-4">0.098</td><td class="py-2.5">Reference only</td></tr>
+            </tbody>
+          </table>
+          <p class="mt-4 text-sm leading-relaxed text-tung-400">
+            Infiltrated CuW density shifts with the tungsten skeleton, so treat these as typical values. A per-batch density report ships with the material on request.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="font-display text-lg font-semibold text-tung-50">Weight per metre of round bar</h3>
+          <div class="mt-4 overflow-x-auto">
+            <table class="w-full border-collapse text-sm">
+              <thead>
+                <tr class="border-b border-steel-700 text-left font-mono text-[0.72rem] uppercase tracking-widest text-tung-500">
+                  <th class="py-2.5 pr-4 font-normal">Diameter</th>
+                  <th class="py-2.5 pr-4 font-normal">75/25</th>
+                  <th class="py-2.5 font-normal">70/30</th>
+                </tr>
+              </thead>
+              <tbody class="text-tung-300">
+                <tr class="border-b border-steel-800/60"><td class="py-2.5 pr-4">Ø12 mm</td><td class="py-2.5 pr-4">1.72 kg/m</td><td class="py-2.5">1.64 kg/m</td></tr>
+                <tr class="border-b border-steel-800/60"><td class="py-2.5 pr-4">Ø16 mm</td><td class="py-2.5 pr-4">3.06 kg/m</td><td class="py-2.5">2.92 kg/m</td></tr>
+                <tr class="border-b border-steel-800/60"><td class="py-2.5 pr-4">Ø20 mm</td><td class="py-2.5 pr-4">4.78 kg/m</td><td class="py-2.5">4.56 kg/m</td></tr>
+                <tr class="border-b border-steel-800/60"><td class="py-2.5 pr-4">Ø25 mm</td><td class="py-2.5 pr-4">7.46 kg/m</td><td class="py-2.5">7.12 kg/m</td></tr>
+                <tr class="border-b border-steel-800/60"><td class="py-2.5 pr-4">Ø30 mm</td><td class="py-2.5 pr-4">10.74 kg/m</td><td class="py-2.5">10.25 kg/m</td></tr>
+                <tr class="border-b border-steel-800/60"><td class="py-2.5 pr-4">Ø40 mm</td><td class="py-2.5 pr-4">19.10 kg/m</td><td class="py-2.5">18.22 kg/m</td></tr>
+                <tr class="border-b border-steel-800/60"><td class="py-2.5 pr-4">Ø50 mm</td><td class="py-2.5 pr-4">29.85 kg/m</td><td class="py-2.5">28.47 kg/m</td></tr>
+                <tr class="border-b border-steel-800/60"><td class="py-2.5 pr-4">Ø63 mm</td><td class="py-2.5 pr-4">47.38 kg/m</td><td class="py-2.5">45.20 kg/m</td></tr>
+                <tr><td class="py-2.5 pr-4">Ø80 mm</td><td class="py-2.5 pr-4">76.40 kg/m</td><td class="py-2.5">72.88 kg/m</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="mt-4 text-sm leading-relaxed text-tung-400">
+            Buying bar stock? Multiply by the length you need. A 300 mm cut of Ø40 in 75/25 is 19.10 × 0.3 ≈ 5.7 kg.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="border-t border-steel-700/60">
+    <div class="mx-auto max-w-7xl px-4 py-20 sm:px-6">
+      <SectionHead as="h2" kicker="FAQ" title="Calculator questions" lead="" />      <div class="grid gap-8 lg:grid-cols-3">
         {faqs.map(([q, a]) => (
           <div class="hairline rounded-sm bg-steel-900 p-6">
             <h3 class="font-semibold text-tung-50">{q}</h3>

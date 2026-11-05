@@ -25,9 +25,9 @@ These are the values to put next to your thermal budget. Ranges reflect normal i
 | Thermal conductivity (W/m·K) | 230–250 | 190–210 | 180–200 | 170–190 | 160–180 |
 | CTE (10⁻⁶/K, 20–100 °C) | 8.0–8.7 | 6.8–7.5 | 6.0–6.8 | 5.4–6.2 | 4.8–5.6 |
 | Electrical conductivity (% IACS) | ≥ 42 | ≥ 38 | 34–38 | 30–34 | 26–30 |
-| Hardness (HB) | 150–170 | 160–180 | 185–205 | 210–230 | 240–260 |
+| Hardness (HB) | ~175 | ~195 | 210–230 | 230–250 | 250–270 |
 
-\* Reference bands for grades above the range we supply, compiled from published mill data. Treat them as indicative, not a specification.
+\* Reference bands for grades above the range we supply, compiled from published mill data. Treat them as indicative, not a specification. The two left-hand columns are our product data for stocked grades.
 
 Three things follow from that table, and they matter more than the individual cells:
 

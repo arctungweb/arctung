@@ -27,12 +27,12 @@ Qualitative tables hide the numbers that actually drive electrode selection. The
 
 | Property (typical, room temperature) | Molybdenum | W/Cu 75/25 | W/Cu 70/30 |
 | --- | --- | --- | --- |
-| Density (g/cm³) | 10.28 | ~15.7 | ~14.7 |
+| Density (g/cm³) | 10.28 | ~15.2 | ~14.5 |
 | Melting point | 2623 °C | No melting in service; copper phase volatilises ~1080 °C, W skeleton stays rigid | Same |
 | Thermal conductivity (W/m·K) | ~138 | 190–210 | 230–250 |
 | Thermal expansion (10⁻⁶/K, 20–100 °C) | ~4.8 | ~7.0 | ~8.4 |
 | Electrical conductivity (% IACS) | ~34 | ≥ 38 | ≥ 42 |
-| Typical hardness | ~230–250 HV | 160–180 HB | 150–170 HB |
+| Typical hardness | ~230–250 HV | ~195 HB | ~175 HB |
 
 Three consequences come straight off this table:
 
@@ -80,7 +80,7 @@ If your finishing burns are burning through electrodes faster than your schedule
 
 **What about the CuMo (copper molybdenum) composite?** CuMo is a third material — molybdenum skeleton infiltrated with copper — not a middle point between pure moly and W/Cu. It sits closer to W/Cu in machinability but with lower density and conductivity. We compare it in detail in [copper molybdenum electrodes](/guides/copper-molybdenum-electrodes/) and do not supply it.
 
-**How much heavier is W/Cu than molybdenum?** About 43–53% per volume depending on grade (15.7 vs 10.28 g/cm³ for 75/25). For large electrodes, check total weight against your holder with the [weight calculator](/tools/electrode-weight-calculator/) before sizing the shank.
+**How much heavier is W/Cu than molybdenum?** About 43–53% per volume depending on grade (15.2 vs 10.28 g/cm³ for 75/25). For large electrodes, check total weight against your holder with the [weight calculator](/tools/electrode-weight-calculator/) before sizing the shank.
 
 **Can you supply near-net blanks?** Yes — rods, blocks and near-net sections in both grades, rough-machined or ground, with custom electrode sections cut to drawing.
 
