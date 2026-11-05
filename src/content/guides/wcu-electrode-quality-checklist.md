@@ -33,7 +33,7 @@ These are the dimensions and properties that decide whether the part works. A wo
 - **Bore and keyway.** H7 is the typical bore tolerance. Gauge the bore and slide the wheel onto a master shaft or the actual arbor: a bore that needs force or has play will hunt on the seam and wear the shaft.
 - **Runout and profile.** Mount the wheel and check runout with a dial indicator — typically 0.02 mm is the specification that keeps the wheel tracking instead of chattering. Verify the edge profile (flat, bevel, R or knurled) against the drawing revision; this is the check most often skipped and most often wrong after a revision change.
 
-For threaded electrodes, add go/no-go thread gauges to both the bore and thread checks — a thread that gauges true on arrival is the only one that screws into the gun the first time.
+For threaded electrodes, add go/no-go thread gauges to both the bore and thread checks — a thread that gauges true on arrival is the only one that screws into the gun the first time. The callouts worth inspecting against are listed in [how to specify threaded tungsten copper electrodes](/guides/threaded-tungsten-copper-electrode-specification/).
 
 ## When to reject
 

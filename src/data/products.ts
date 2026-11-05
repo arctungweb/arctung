@@ -16,6 +16,13 @@ export interface BodySection {
   links?: { label: string; href: string }[];
 }
 
+/** Contextual link into the technical library. `note` says what the reader gets, not what the page is. */
+export interface FurtherReading {
+  label: string;
+  href: string;
+  note: string;
+}
+
 export interface Product {
   slug: string;
   name: string;
@@ -31,6 +38,7 @@ export interface Product {
   specs: SpecRow[];
   applications: string[];
   body?: BodySection[];
+  furtherReading?: FurtherReading[];
 }
 
 export const products: Product[] = [
@@ -289,4 +297,141 @@ export const products: Product[] = [
     applications: ['Near-net infiltrated blanks', 'Profiled segments and plates', 'Special welding fixtures']
   }
 ];
+
+/**
+ * Product pages are the strongest internal weight on the site and the last stop
+ * before an RFQ. Each one now hands the buyer the guide that answers the next
+ * question, instead of dead-ending at a quote button.
+ */
+const furtherReading: Record<string, FurtherReading[]> = {
+  'electrode-wheels-75-25': [
+    {
+      label: 'W75Cu25 vs W70Cu30 for resistance welding',
+      href: '/guides/w75cu25-vs-w70cu30/',
+      note: 'The comparison buyers ask for first: wear life against conductivity, with numbers on both.'
+    },
+    {
+      label: 'Seam welding wheel profiles: flat, bevel, R, knurled',
+      href: '/guides/electrode-wheel-profile-guide/',
+      note: 'What each face profile does to the nugget and to wheel life before you commit a drawing.'
+    },
+    {
+      label: 'Bore tolerance H7 and 0.02 mm runout',
+      href: '/guides/electrode-wheel-bore-and-runout-specs/',
+      note: 'Why these two numbers, not hardness, decide whether a wheel tracks at line speed.'
+    },
+    {
+      label: 'Ordering custom electrode wheels',
+      href: '/guides/how-to-order-custom-electrode-wheels/',
+      note: 'Drawing to delivery — what to put on the drawing so the first part is the right part.'
+    },
+    {
+      label: 'Machining tungsten copper in your own shop',
+      href: '/guides/tungsten-copper-machining-guidelines/',
+      note: 'Threads, holes and finishes for shops that machine our stock rather than buy finished parts.'
+    }
+  ],
+  'electrode-wheels-70-30': [
+    {
+      label: 'W75Cu25 vs W70Cu30 for resistance welding',
+      href: '/guides/w75cu25-vs-w70cu30/',
+      note: 'When the extra conductivity is worth the wear life — and which weld schedules actually need it.'
+    },
+    {
+      label: 'Seam welding galvanized and coated steel',
+      href: '/guides/coated-steels-seam-welding-electrodes/',
+      note: 'The zinc pickup problem, and how alloy choice changes your cleaning interval.'
+    },
+    {
+      label: 'Wheel wear cycles and a spare strategy',
+      href: '/guides/seam-welding-wheel-wear-and-reorder/',
+      note: 'How many spares to hold so a reorder never turns into a line stoppage.'
+    },
+    {
+      label: 'Wheel slip and uneven wear: causes and fixes',
+      href: '/guides/seam-wheel-slip-and-uneven-wear/',
+      note: 'Diagnose skid marks and one-sided wear before blaming the alloy.'
+    }
+  ],
+  'rods-blocks': [
+    {
+      label: 'How to buy tungsten copper rods and blocks',
+      href: '/guides/how-to-buy-tungsten-copper-rods-blocks/',
+      note: 'Stock sizes, as-sintered versus machined condition, and how a stock order is quoted.'
+    },
+    {
+      label: 'Reading a CuW data sheet: properties and density',
+      href: '/guides/tungsten-copper-properties-and-density/',
+      note: 'How test-temperature footnotes make the same grade look like two different materials.'
+    },
+    {
+      label: 'Machining tungsten copper in your own shop',
+      href: '/guides/tungsten-copper-machining-guidelines/',
+      note: 'Cutting parameters for a material that work-hardens and pulls heat out of the cut.'
+    },
+    {
+      label: 'EDM electrode material selection',
+      href: '/guides/edm-electrode-material-selection/',
+      note: 'Where W/Cu fits against graphite and pure copper — and where it does not.'
+    },
+    {
+      label: 'How tungsten copper is made: the infiltration process',
+      href: '/guides/tungsten-copper-infiltration-process/',
+      note: 'Why infiltration rather than sintering is what makes the density numbers hold.'
+    }
+  ],
+  'threaded-electrodes': [
+    {
+      label: 'Specifying threaded tungsten copper electrodes',
+      href: '/guides/threaded-tungsten-copper-electrode-specification/',
+      note: 'Thread callouts, shoulder geometry and torque values for gun-mounted electrodes.'
+    },
+    {
+      label: 'Machining tungsten copper: threads and holes',
+      href: '/guides/tungsten-copper-machining-guidelines/',
+      note: 'Tap selection, coolant and the thread failure modes worth designing out.'
+    },
+    {
+      label: 'Resistance welding electrode alloys compared',
+      href: '/guides/resistance-welding-electrode-alloys-overview/',
+      note: 'CrZr, BeCu and W/Cu side by side — where each one actually earns its place.'
+    },
+    {
+      label: 'RWMA electrode classes explained',
+      href: '/guides/rwma-electrode-classes-explained/',
+      note: 'What the class system tells you about a W/Cu electrode, and what it does not.'
+    }
+  ],
+  'custom-parts': [
+    {
+      label: 'Ordering custom electrode wheels and parts',
+      href: '/guides/how-to-order-custom-electrode-wheels/',
+      note: 'What a complete drawing package looks like, and what happens after you send it.'
+    },
+    {
+      label: 'How tungsten copper is made: the infiltration process',
+      href: '/guides/tungsten-copper-infiltration-process/',
+      note: 'How composition is set, and why the tungsten skeleton caps what a custom grade can do.'
+    },
+    {
+      label: 'Tungsten copper vs molybdenum for EDM',
+      href: '/guides/tungsten-copper-vs-molybdenum/',
+      note: 'When moly is the better refractory for a custom electrode — and when it quietly is not.'
+    },
+    {
+      label: 'Properties and density by grade',
+      href: '/guides/tungsten-copper-properties-and-density/',
+      note: 'Density, conductivity and hardness with the test conditions stated next to them.'
+    },
+    {
+      label: 'Heat sink grade selection',
+      href: '/guides/tungsten-copper-heat-sink-selection/',
+      note: 'If the part spreads heat rather than carries current, start from this page instead.'
+    }
+  ]
+};
+
+for (const product of products) {
+  product.furtherReading = furtherReading[product.slug] ?? [];
+}
 

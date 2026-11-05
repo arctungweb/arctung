@@ -3,7 +3,7 @@ import imgSeam from '../assets/factory/03-sintering-workshop.webp';
 import imgRW from '../assets/factory/07-product-threaded-electrodes.jpg';
 import imgEdm from '../assets/factory/09-workshop-materials.jpg';
 import imgHeat from '../assets/factory/01-infiltration-furnace.webp';
-import type { BodySection } from './products';
+import type { BodySection, FurtherReading } from './products';
 
 export interface Application {
   slug: string;
@@ -17,6 +17,7 @@ export interface Application {
   keyPoints: [string, string][];
   productSlugs: string[];
   body?: BodySection[];
+  furtherReading?: FurtherReading[];
 }
 
 export const applications: Application[] = [
@@ -197,3 +198,114 @@ export const applications: Application[] = [
     productSlugs: ['custom-parts']
   }
 ];
+
+/** Each application page answers "should this be W/Cu at all" — the guides answer "which one, and how". */
+const furtherReading: Record<string, FurtherReading[]> = {
+  'seam-welding-wheels': [
+    {
+      label: 'Seam welding wheel profiles: flat, bevel, R, knurled',
+      href: '/guides/electrode-wheel-profile-guide/',
+      note: 'The profile sets the nugget shape and the wear pattern — pick it before the alloy.'
+    },
+    {
+      label: 'Bore tolerance H7 and 0.02 mm runout',
+      href: '/guides/electrode-wheel-bore-and-runout-specs/',
+      note: 'A correctly made wheel that still tracks badly usually fails one of these two numbers.'
+    },
+    {
+      label: 'Wheel wear cycles and a spare strategy',
+      href: '/guides/seam-welding-wheel-wear-and-reorder/',
+      note: 'How to size a spare set against your dress-and-replace interval.'
+    },
+    {
+      label: 'Wheel slip and uneven wear: causes and fixes',
+      href: '/guides/seam-wheel-slip-and-uneven-wear/',
+      note: 'Separates machine and current problems from material problems in one pass.'
+    },
+    {
+      label: 'Seam welding galvanized and coated steel',
+      href: '/guides/coated-steels-seam-welding-electrodes/',
+      note: 'Zinc pickup, cleaning intervals and the grade choice that stretches them.'
+    }
+  ],
+  'resistance-welding-electrodes': [
+    {
+      label: 'Resistance welding electrode alloys compared',
+      href: '/guides/resistance-welding-electrode-alloys-overview/',
+      note: 'CrZr, BeCu and W/Cu against the same six criteria, not against marketing copy.'
+    },
+    {
+      label: 'RWMA electrode classes explained',
+      href: '/guides/rwma-electrode-classes-explained/',
+      note: 'How to read a class callout on a drawing, and where W/Cu sits in that system.'
+    },
+    {
+      label: 'Tungsten copper vs chromium copper',
+      href: '/guides/tungsten-copper-vs-chromium-copper/',
+      note: 'The switch most plants make first, and the point where it stops paying.'
+    },
+    {
+      label: 'Tungsten copper vs beryllium copper',
+      href: '/guides/tungsten-copper-vs-beryllium-copper/',
+      note: 'Performance plus the beryllium handling and regulatory cost nobody quotes you.'
+    },
+    {
+      label: 'Incoming inspection checklist',
+      href: '/guides/wcu-electrode-quality-checklist/',
+      note: 'What to measure on arrival so a bad batch is caught before it reaches the line.'
+    }
+  ],
+  'edm-electrodes': [
+    {
+      label: 'EDM electrode material selection',
+      href: '/guides/edm-electrode-material-selection/',
+      note: 'Wear rate against material cost — the only comparison that decides electrode economics.'
+    },
+    {
+      label: 'Tungsten copper vs molybdenum',
+      href: '/guides/tungsten-copper-vs-molybdenum/',
+      note: 'The refractory decision, with the machining argument that usually settles it.'
+    },
+    {
+      label: 'Tungsten copper vs pure tungsten',
+      href: '/guides/tungsten-copper-vs-pure-tungsten/',
+      note: 'Where CuW earns its keep and where pure tungsten is still the right answer.'
+    },
+    {
+      label: 'Copper molybdenum electrodes',
+      href: '/guides/copper-molybdenum-electrodes/',
+      note: 'What CuMo is, what it costs, and the burn geometries where it beats W/Cu.'
+    },
+    {
+      label: 'Machining tungsten copper',
+      href: '/guides/tungsten-copper-machining-guidelines/',
+      note: 'Fine features, thin ribs and the depths where electrode deflection shows up.'
+    }
+  ],
+  'heat-sinks-contacts': [
+    {
+      label: 'Copper tungsten thermal conductivity and heat sink grades',
+      href: '/guides/tungsten-copper-heat-sink-selection/',
+      note: 'Conductivity, CTE and hardness by grade, plus the substrate-matching table.'
+    },
+    {
+      label: 'Copper tungsten CTE and thermal expansion',
+      href: '/guides/tungsten-copper-thermal-expansion/',
+      note: 'Why expansion, not conductivity, causes most solder-joint failures in service.'
+    },
+    {
+      label: 'Reading a CuW data sheet',
+      href: '/guides/tungsten-copper-properties-and-density/',
+      note: 'Test temperature changes the CTE number by 1–2 ppm/K — here is how to compare fairly.'
+    },
+    {
+      label: 'How tungsten copper is made: the infiltration process',
+      href: '/guides/tungsten-copper-infiltration-process/',
+      note: 'Why infiltrated material holds density where pressed-and-sintered parts do not.'
+    }
+  ]
+};
+
+for (const application of applications) {
+  application.furtherReading = furtherReading[application.slug] ?? [];
+}

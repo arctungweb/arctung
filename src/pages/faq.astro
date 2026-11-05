@@ -102,6 +102,26 @@ const faqLd = {
             <li>Batch traceability on every order</li>
           </ul>
         </div>
+
+        <div class="hairline mt-6 rounded-sm bg-steel-900 p-6">
+          <p class="font-mono text-[0.72rem] uppercase tracking-widest text-tung-500">Guides behind these answers</p>
+          <ul class="mt-4 space-y-3 text-sm">
+            {[
+              ['W75Cu25 vs W70Cu30', '/guides/w75cu25-vs-w70cu30/'],
+              ['Bore tolerance and runout specs', '/guides/electrode-wheel-bore-and-runout-specs/'],
+              ['Reading a CuW data sheet', '/guides/tungsten-copper-properties-and-density/'],
+              ['Incoming inspection checklist', '/guides/wcu-electrode-quality-checklist/'],
+              ['Ordering custom electrode wheels', '/guides/how-to-order-custom-electrode-wheels/']
+            ].map(([label, href]) => (
+              <li>
+                <a href={href} class="group flex items-start gap-2.5 text-tung-200 hover:text-copper-300">
+                  <span class="mt-1.5 inline-block h-1 w-1 shrink-0 rotate-45 bg-copper-500"></span>
+                  <span class="underline-offset-4 group-hover:underline">{label}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
       </aside>
     </div>
   </section>

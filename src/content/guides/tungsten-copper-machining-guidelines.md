@@ -55,7 +55,7 @@ Practical threading guidance:
 - Metric and UNC/UNF forms are routine; special forms, left-hand threads and tapered shanks are all cut to drawing.
 - Match the thread fit class your mating holder was designed around. In welding guns the threaded joint carries current, force and tip-change release all at once, so fit class is not cosmetic.
 
-If your consumption shows thread damage rather than face wear, the fix is usually seating practice or holder design — not the alloy.
+If your consumption shows thread damage rather than face wear, the fix is usually seating practice or holder design — not the alloy. When you are writing the drawing rather than reading it, [how to specify threaded tungsten copper electrodes](/guides/threaded-tungsten-copper-electrode-specification/) covers thread callouts, shoulder geometry and torque values.
 
 ## Drilling and small holes
 
@@ -63,9 +63,9 @@ Drilling behaves like a free-machining bronze at reduced surface speed. Use shar
 
 ## When to machine it yourself — and when not to
 
-Buying rods and blocks and machining in-house makes sense when you cut caps, shanks and simple facings on short notice and your machine time is cheap. Stock shapes in both W/Cu 75/25 and 70/30, rough-machined or ground, exist exactly for that workflow.
+Buying rods and blocks and machining in-house makes sense when you cut caps, shanks and simple facings on short notice and your machine time is cheap. Stock shapes in both W/Cu 75/25 and 70/30, rough-machined or ground, exist exactly for that workflow — [how to buy tungsten copper rods and blocks](/guides/how-to-buy-tungsten-copper-rods-blocks/) covers the sizes, the delivery condition and how a stock order is quoted.
 
-But run the numbers honestly for finished parts. A wheel with a keyed bore, a bevel profile and a runout requirement needs tooling, setup, gauging and balancing — and dense W/Cu punishes packaging and handling mistakes in transit. For anything beyond simple facings, finished parts to drawing often cost less than stock plus your shop time, and they arrive with dimensional records.
+But run the numbers honestly for finished parts. A wheel with a keyed bore, a bevel profile and a runout requirement needs tooling, setup, gauging and balancing — and dense W/Cu punishes packaging and handling mistakes in transit. For anything beyond simple facings, finished parts to drawing often cost less than stock plus your shop time, and they arrive with dimensional records — [ordering custom electrode wheels](/guides/how-to-order-custom-electrode-wheels/) walks through what a drawing package needs to contain.
 
 ## Get stock or get it finished
 

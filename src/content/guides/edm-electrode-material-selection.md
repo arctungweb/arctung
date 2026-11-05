@@ -42,7 +42,7 @@ Both grades machine like a hard bronze on conventional tooling — carbide tooli
 
 ## Stock formats that match EDM workflows
 
-EDM consumption is continuous but lumpy: one week six small rods, the next week a block for a cavity repair. We stock round rods, rectangular blocks and near-net blanks in both grades — rough-machined or ground — shipping in **10–14 days with no minimum order**, sized to that rhythm rather than to pallet quantities. For recurring electrode sections, we hold your drawing and cut repeat batches to the same dimensions, so the only thing that changes between orders is the delivery date. Third-party test reports to ASTM B702 are available when your quality system requires certification.
+EDM consumption is continuous but lumpy: one week six small rods, the next week a block for a cavity repair. We stock round rods, rectangular blocks and near-net blanks in both grades — rough-machined or ground — shipping in **10–14 days with no minimum order**, sized to that rhythm rather than to pallet quantities. For recurring electrode sections, we hold your drawing and cut repeat batches to the same dimensions, so the only thing that changes between orders is the delivery date. Third-party test reports to ASTM B702 are available when your quality system requires certification. If you are buying stock for your own machining rather than finished electrodes, [how to buy tungsten copper rods and blocks](/guides/how-to-buy-tungsten-copper-rods-blocks/) covers the size list and delivery condition.
 
 ## Get a quote
 

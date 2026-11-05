@@ -192,6 +192,45 @@ const websiteLd = {
     </p>
   </section>
 
+  <!-- TECHNICAL LIBRARY -->
+  <section class="border-t border-steel-700/60 bg-steel-900">
+    <div class="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-24">
+      <SectionHead
+        kicker="Technical library"
+        title="23 guides to the questions that come before the quote"
+        lead="Grade selection, tolerances, machining and failure modes — written by the people who machine the parts, not by a content agency."
+      />
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {[
+          ['Grade selection', 'W75Cu25 vs W70Cu30 for resistance welding', '/guides/w75cu25-vs-w70cu30/', 'Wear life against conductivity, with the weld schedules each grade actually suits.'],
+          ['Wheel geometry', 'Seam welding wheel profiles explained', '/guides/electrode-wheel-profile-guide/', 'Flat, bevel, R and knurled faces — what each does to the nugget and to wheel life.'],
+          ['Material data', 'Tungsten copper properties and density', '/guides/tungsten-copper-properties-and-density/', 'How to read a CuW data sheet, and why test temperature changes the numbers.'],
+          ['Refractory choice', 'Tungsten copper vs molybdenum for EDM', '/guides/tungsten-copper-vs-molybdenum/', 'Where CuMo wins on cost and where W/Cu wins on everything that matters at the spark gap.'],
+          ['Thermal management', 'Copper tungsten thermal conductivity and heat sink grades', '/guides/tungsten-copper-heat-sink-selection/', 'Conductivity and CTE by grade, plus the substrate-matching table.'],
+          ['Quality', 'Incoming inspection checklist for W/Cu electrodes', '/guides/wcu-electrode-quality-checklist/', 'What to measure on arrival so a bad batch is caught before it reaches the line.']
+        ].map(([kicker, title, href, note]) => (
+          <a href={href} class="group hairline flex flex-col rounded-sm bg-steel-950 p-6 transition-all hover:border-copper-500/60">
+            <p class="font-mono text-[0.68rem] uppercase tracking-[0.2em] text-copper-400">{kicker}</p>
+            <h3 class="mt-3 font-display text-lg font-bold leading-snug tracking-tight text-tung-50 transition-colors group-hover:text-copper-300">{title}</h3>
+            <p class="mt-2.5 text-sm leading-relaxed text-tung-300">{note}</p>
+            <span class="mt-auto pt-5 flex items-center gap-2 font-mono text-[0.72rem] uppercase tracking-widest text-copper-400">
+              Read
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" class="transition-transform group-hover:translate-x-1">
+                <path d="M5 12h14M13 6l6 6-6 6"/>
+              </svg>
+            </span>
+          </a>
+        ))}
+      </div>
+      <p class="mt-10">
+        <a href="/guides/" class="inline-flex items-center gap-2 font-mono text-sm uppercase tracking-widest text-copper-300 hover:text-copper-400">
+          Browse all 23 guides
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </p>
+    </div>
+  </section>
+
   <!-- CTA -->
   <section class="relative overflow-hidden border-t border-steel-700/60">
     <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,var(--color-copper-500)_0%,transparent_55%)] opacity-20"></div>

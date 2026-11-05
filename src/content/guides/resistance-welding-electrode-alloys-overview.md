@@ -21,7 +21,7 @@ Harder than CrZr (typically up to around 100 HRB in the harder tempers) with con
 
 - **Best for:** current-carrying structural components — holders, fixtures, shafts, projection-welding die bodies — where strength matters as much as conduction.
 - **How it fails:** on weld faces, the same coating-pickup and wear problems as other copper alloys, at higher material cost.
-- **One caution for buyers:** beryllium in dust form is a serious occupational health hazard, so machining BeCu in-house carries obligations that W/Cu and CrZr do not.
+- **One caution for buyers:** beryllium in dust form is a serious occupational health hazard, so machining BeCu in-house carries obligations that W/Cu and CrZr do not. [The beryllium copper comparison](/guides/tungsten-copper-vs-beryllium-copper/) prices that risk into the decision.
 - **Substitute for W/Cu?** As a die or holder body, sometimes yes. As a weld face on coated or high-strength steel, it buys you hardness without escaping the copper-face failure modes.
 
 ## Tungsten copper (W/Cu 75/25 and 70/30, RWMA Class 10/11)
@@ -37,7 +37,7 @@ A different construction entirely: a sintered tungsten skeleton infiltrated with
 Running substitution both ways:
 
 - **W/Cu replacing CrZr or BeCu:** works whenever the failure mode is face wear, glazing, sticking or profile drift — the majority of coated-steel and long-campaign problems. Expect to retune the weld schedule upward on current; W/Cu is less conductive.
-- **CrZr replacing W/Cu:** only sensible on bare, thin, low-force work where conductivity is the binding constraint and electrode life is already adequate. On coated strip, expect dress frequency to multiply.
+- **CrZr replacing W/Cu:** only sensible on bare, thin, low-force work where conductivity is the binding constraint and electrode life is already adequate. On coated strip, expect dress frequency to multiply — [the chromium copper comparison](/guides/tungsten-copper-vs-chromium-copper/) draws that line case by case.
 - **Within W/Cu:** 75/25 for wear-limited stations, 70/30 for heat-limited ones. Both grades machine and fit identically, so switching is a purchasing decision, not a process change.
 
 One caution applies to any substitution: weld schedules are tuned to the alloy in the drawing. If you replace an existing electrode, match the specified alloy unless you can run a controlled trial — samples are cheap and typically ship in 10 days or less.
