@@ -17,7 +17,7 @@ Check the shipment against the order before touching a part:
 
 ## Physical checks on arrival
 
-W/Cu is dense — typically around 13.6–15.2 g/cm³ depending on grade — so packaging failures show up as dings and edge damage. Inspect before stocking:
+W/Cu is dense — typically around 14.5–15.2 g/cm³ depending on grade — so packaging failures show up as dings and edge damage. Inspect before stocking:
 
 1. **Packaging condition.** Vacuum bags with foam lining, rods in cartons, blocks in wooden crates. A crushed corner of the crate deserves a photo before you sign.
 2. **Visible damage** on faces, threads and profile edges. Surface oxidation of the copper phase is cosmetic and normal; dented profile edges are not.
@@ -27,7 +27,7 @@ W/Cu is dense — typically around 13.6–15.2 g/cm³ depending on grade — so 
 
 These are the dimensions and properties that decide whether the part works. A workshop with calipers, a dial indicator, a bench and a hardness tester can do all of them:
 
-- **Density.** Typically 14.2–14.8 g/cm³ for W/Cu 75/25 and 13.6–14.0 g/cm³ for 70/30. Water-displacement measurement on a sample part confirms infiltration quality; certify against the batch record rather than testing every part.
+- **Density.** Typically ≈ 15.2 g/cm³ for W/Cu 75/25 and ≈ 14.5 g/cm³ for 70/30. Water-displacement measurement on a sample part confirms infiltration quality; certify against the batch record rather than testing every part.
 - **Electrical conductivity.** Typically ≥38% IACS for 75/25 and ≥42% IACS for 70/30. A conductivity meter on the face catches a wrong-grade shipment instantly — the most common mix-up is 75/25 supplied against a 70/30 order.
 - **Hardness.** Typically 85–95 HRB (75/25) and 80–90 HRB (70/30); machinable-wheel specs are often quoted around 175–195 HB. A soft batch dresses fast and drifts out of profile — the failure that looks like "bad electrodes" three weeks later.
 - **Bore and keyway.** H7 is the typical bore tolerance. Gauge the bore and slide the wheel onto a master shaft or the actual arbor: a bore that needs force or has play will hunt on the seam and wear the shaft.

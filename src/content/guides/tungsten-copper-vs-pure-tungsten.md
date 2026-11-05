@@ -22,7 +22,7 @@ The failure mode changes accordingly: instead of cracking and spalling, a CuW el
 
 | Property (typical) | Pure W | W/Cu 75/25 | W/Cu 70/30 |
 | --- | --- | --- | --- |
-| Density | 19.3 g/cm³ | ~14.5 g/cm³ | ~13.8 g/cm³ |
+| Density | 19.3 g/cm³ | ≈ 15.2 g/cm³ | ≈ 14.5 g/cm³ |
 | Conductivity | ~30% IACS | ≥ 38% IACS | ≥ 42% IACS |
 | Hardness | 60–70 HRC | 85–95 HRB | 80–90 HRB |
 | Thermal cycling behaviour | Cracks, spalls | Stable face | Stable face |

@@ -18,7 +18,7 @@ That is why the industry standardizes on a handful of ratios. Our line is [W/Cu 
 
 ## Density: the number that tells you the grade is real
 
-Pure copper is about 8.9 g/cm³; pure tungsten 19.3 g/cm³. Infiltrated CuW grades fall between, and density rises almost linearly with tungsten fraction. Typical ranges run roughly 13.5–15.5 g/cm³ across the common 70–80% W grades — our two grades are around 14–15 g/cm³, with the 75/25 grade denser than the 70/30.
+Pure copper is about 8.9 g/cm³; pure tungsten 19.3 g/cm³. Infiltrated CuW grades fall between, and density rises almost linearly with tungsten fraction. Typical ranges run roughly 13.5–15.5 g/cm³ across the common 70–80% W grades; our two grades are 15.2 g/cm³ for 75/25 and 14.5 g/cm³ for 70/30. If you need the figure for an actual part rather than a grade, the [weight calculator](/tools/electrode-weight-calculator/) turns dimensions into kilograms and doubles as a density table.
 
 Density is the fastest integrity check available to a receiving dock, for one reason: **porosity lowers density**. A poorly infiltrated billet reads light. If incoming density checks fall below the published range, the likely cause is incomplete infiltration — and porosity shows up in service as poor conductivity and premature face erosion. It is cheap to weigh and calculate a billet's density; it catches more problems than any visual inspection.
 

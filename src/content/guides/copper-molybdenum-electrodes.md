@@ -38,7 +38,7 @@ Read the table as a trade, not a ranking: CuMo gives you conductivity and cost, 
 
 - **Large, simple cavities at high current.** When the burn is roughing and the electrode is big, wear rate is dominated by thermal load per unit area rather than by fine-feature retention. CuMo's higher conductivity and lower mass help here, and the cost difference on a large electrode is real money.
 - **Electrodes you will consume quickly.** If a job eats several electrodes per cavity regardless of material, paying for tungsten's wear resistance is paying for life you will not use.
-- **Weight-limited setups.** Small EDM machines, light heads and manual tooling changeover all care about electrode mass. A 30% weight cut per electrode is a handling improvement, not just a cost one.
+- **Weight-limited setups.** Small EDM machines, light heads and manual tooling changeover all care about electrode mass. A 30% weight cut per electrode is a handling improvement, not just a cost one — run your section through the [electrode weight calculator](/tools/electrode-weight-calculator/) to see the kilograms you would save.
 - **Resistance welding and thermal spreaders** where the duty is conduction rather than abrasion.
 
 ## Where W/Cu is the better electrode
