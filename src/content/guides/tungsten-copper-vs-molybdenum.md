@@ -40,6 +40,8 @@ Three consequences come straight off this table:
 2. **Heat removal.** Both W/Cu grades move heat about 40–70% faster than moly. In a deep burn with restricted flushing, that conductivity is what lets you hold aggressive discharge energy without heat-softening the electrode nose.
 3. **Dimensional stability.** Moly's lower expansion (~4.8 vs ~7–8.4) buys a little accuracy over very long unattended burns, but in practice the CTE gap is smaller than the geometric advantage of machining a more accurate electrode in W/Cu — you cannot machine in moly what you can machine in CuW.
 
+The expansion figures above are room-temperature comparisons. If the electrode or the part it mounts to is CTE-sensitive, the [copper tungsten CTE guide](/guides/tungsten-copper-thermal-expansion/) covers how the number moves across the service range.
+
 
 ## Where molybdenum is the right answer
 

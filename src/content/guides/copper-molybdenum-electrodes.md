@@ -32,7 +32,7 @@ The consequences of swapping tungsten for molybdenum follow directly from the tw
 | Machinability | Conventional | Conventional | Conventional |
 | Relative material cost | Lower | Higher | Higher |
 
-Read the table as a trade, not a ranking: CuMo gives you conductivity and cost, W/Cu gives you density, wear resistance and thermal stability.
+Read the table as a trade, not a ranking: CuMo gives you conductivity and cost, W/Cu gives you density, wear resistance and thermal stability. If the choice is being driven by expansion rather than wear, the [copper tungsten CTE guide](/guides/tungsten-copper-thermal-expansion/) explains where the two materials separate on thermal cycling.
 
 ## Where CuMo is the better electrode
 

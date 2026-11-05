@@ -37,7 +37,7 @@ Typical hardness for the standard grades sits around 80–95 HRB (roughly 170–
 
 ## Thermal expansion: roughly half of pure copper
 
-Copper expands a lot for a metal; tungsten barely at all. Infiltrated CuW lands in between — roughly half the thermal expansion of pure copper, at a rate that sits usefully between copper and semiconductor materials like silicon. This is the quiet property behind two of CuW's best applications: lower thermal-cycle stress on joints in [power-electronics heat spreading](/applications/heat-sinks-contacts/), and dimensional stability in welding electrodes that cycle thermally thousands of times per shift.
+Copper expands a lot for a metal; tungsten barely at all. Infiltrated CuW lands in between — roughly half the thermal expansion of pure copper, at a rate that sits usefully between copper and semiconductor materials like silicon. This is the quiet property behind two of CuW's best applications: lower thermal-cycle stress on joints in [power-electronics heat spreading](/applications/heat-sinks-contacts/), and dimensional stability in welding electrodes that cycle thermally thousands of times per shift. The [copper tungsten CTE guide](/guides/tungsten-copper-thermal-expansion/) covers how that expansion moves across the service temperature range and how to write it into a drawing.
 
 ## What to check on any CuW datasheet
 
