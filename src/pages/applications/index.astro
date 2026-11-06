@@ -81,4 +81,70 @@ const collectionLd = {
       </div>
     </div>
   </section>
+
+  <section class="border-t border-steel-700/60 bg-steel-900">
+    <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20">
+      <SectionHead
+        kicker="Read the failure first"
+        title="What breaks in each application, and which grade that points to"
+        lead="Grade selection gets argued as a materials question. It is usually a failure-mode question — pick the mode you are fighting and the grade follows."
+      />
+
+      <div class="hairline overflow-hidden rounded-sm bg-steel-950">
+        <div class="overflow-x-auto">
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th>Application</th>
+                <th>What fails first</th>
+                <th>Grade this points to</th>
+                <th>Formats we supply</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Seam welding wheels</td>
+                <td>Profile drift and zinc pickup on coated strip; mushrooming on bare steel under high force</td>
+                <td>75/25 for wear life · 70/30 when the schedule needs the extra conductivity</td>
+                <td>Wheels machined to drawing, flat, bevel, R or knurled</td>
+              </tr>
+              <tr>
+                <td>Resistance welding</td>
+                <td>Face mushrooming; then thread damage or poor seating in the gun</td>
+                <td>75/25 default · 70/30 for heavy current on coated or high-strength steel</td>
+                <td>Threaded electrodes, caps from stock, rods and blocks</td>
+              </tr>
+              <tr>
+                <td>EDM electrodes</td>
+                <td>Wear ratio — fine features eroding away before the cavity is finished</td>
+                <td>70/30 where conductivity limits the burn · 75/25 for the longest runs</td>
+                <td>Rods, blocks, near-net blanks, custom sections</td>
+              </tr>
+              <tr>
+                <td>Heat sinks &amp; contacts</td>
+                <td>CTE mismatch against the ceramic or package, then solder-joint fatigue</td>
+                <td>Sub-80% W only — mainstream heat-sink grades sit above that line and outside our range</td>
+                <td>Custom plates and contact assemblies to drawing</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="mt-4 max-w-3xl text-xs leading-relaxed text-tung-500">
+        The heat-sink row is the one where we will disappoint a buyer, so it is worth stating plainly:
+        semiconductor heat spreaders are usually 80–90% tungsten, which is above what we export. Send the
+        composition anyway — if it falls below the line we can quote it, and if it does not we will say so
+        in the first reply.
+      </p>
+
+      <p class="mt-10 text-sm leading-relaxed text-tung-300">
+        Each of these has a longer argument behind it — the grade trade-off in
+        <a href="/guides/w75cu25-vs-w70cu30/" class="text-copper-300 underline underline-offset-4 hover:text-copper-200">W75Cu25 against W70Cu30</a>,
+        the substrate matching in the
+        <a href="/guides/tungsten-copper-heat-sink-selection/" class="text-copper-300 underline underline-offset-4 hover:text-copper-200">heat sink grade guide</a>,
+        and the wear economics in
+        <a href="/guides/edm-electrode-material-selection/" class="text-copper-300 underline underline-offset-4 hover:text-copper-200">EDM material selection</a>.
+      </p>
+    </div>
+  </section>
 </Base>
