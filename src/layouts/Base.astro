@@ -9,9 +9,20 @@ interface Props {
   description: string;
   jsonLd?: Record<string, unknown>[];
   noindex?: boolean;
+  ogType?: 'website' | 'article';
+  canonicalEnabled?: boolean;
+  includeOrganization?: boolean;
 }
 
-const { title, description, jsonLd = [], noindex = false } = Astro.props;
+const {
+  title,
+  description,
+  jsonLd = [],
+  noindex = false,
+  ogType = 'website',
+  canonicalEnabled = true,
+  includeOrganization = true
+} = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 
 // Keep long titles meaningful: preserve a short brand suffix and trim only the
@@ -78,7 +89,7 @@ const orgLd = {
     addressCountry: 'CN'
   }
 };
-const allLd = [orgLd, ...jsonLd];
+const allLd = includeOrganization ? [orgLd, ...jsonLd] : jsonLd;
 ---
 
 <!doctype html>
@@ -88,14 +99,14 @@ const allLd = [orgLd, ...jsonLd];
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{serpTitle}</title>
     <meta name="description" content={desc} />
-    {noindex && <meta name="robots" content="noindex, nofollow" />}
-    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
+    {canonicalEnabled && <link rel="canonical" href={canonical} />}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <meta name="generator" content={Astro.generator} />
     <meta name="theme-color" content="#0d0f12" />
 
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content={SITE.name} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={desc} />
@@ -108,7 +119,7 @@ const allLd = [orgLd, ...jsonLd];
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={`${SITE.url}/og/og-default.png`} />
 
-    <script type="application/ld+json" set:html={JSON.stringify(allLd)} />
+    {allLd.length > 0 && <script type="application/ld+json" set:html={JSON.stringify(allLd)} />}
     {SITE.crispId && (
       <script is:inline define:vars={{ crispId: SITE.crispId }}>
         window.$crisp = [];

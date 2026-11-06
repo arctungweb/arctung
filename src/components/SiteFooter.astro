@@ -22,7 +22,7 @@ const guides = (await getCollection('guides'))
       <p class="font-mono text-[0.72rem] uppercase tracking-[0.2em] text-tung-500">Guides</p>
       <ul class="mt-4 space-y-2.5 text-sm">
         {guides.map((g) => (
-          <li><a class="text-tung-300 transition-colors hover:text-copper-300" href={`/guides/${g.id}/`}>{g.data.tag}</a></li>
+          <li><a class="text-tung-300 transition-colors hover:text-copper-300" href={`/guides/${g.id}/`}>{g.data.title}</a></li>
         ))}
         <li><a class="text-copper-300 transition-colors hover:text-copper-200" href="/guides/">All guides →</a></li>
       </ul>

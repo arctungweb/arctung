@@ -34,7 +34,7 @@ const breadcrumbLd = {
   '@type': 'BreadcrumbList',
   itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url },
-    { '@type': 'ListItem', position: 2, name: 'Applications', item: `${SITE.url}/#applications` },
+    { '@type': 'ListItem', position: 2, name: 'Applications', item: `${SITE.url}/applications/` },
     { '@type': 'ListItem', position: 3, name: application.shortName, item: `${SITE.url}/applications/${application.slug}/` }
   ]
 };
@@ -58,7 +58,7 @@ const metaDescription = `${application.tagline}. ${application.keyPoints[0][1]}`
       <nav class="rise flex items-center gap-2 font-mono text-[0.72rem] uppercase tracking-widest text-tung-500" aria-label="Breadcrumb">
         <a href="/" class="hover:text-copper-300">Home</a>
         <span>/</span>
-        <a href="/#applications" class="hover:text-copper-300">Applications</a>
+        <a href="/applications/" class="hover:text-copper-300">Applications</a>
         <span>/</span>
         <span class="text-copper-300">{application.shortName}</span>
       </nav>

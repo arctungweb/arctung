@@ -42,7 +42,7 @@ const breadcrumbLd = {
 const fmt = (d: Date) => d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 ---
 
-<Base title={`${guide.data.title} | ArcTung`} description={guide.data.description} jsonLd={[articleLd, breadcrumbLd]}>
+<Base title={`${guide.data.title} | ArcTung`} description={guide.data.description} jsonLd={[articleLd, breadcrumbLd]} ogType="article">
   <section class="border-b border-steel-700/60 bg-steel-900">
     <div class="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-20">
       <nav class="rise flex items-center gap-2 font-mono text-[0.72rem] uppercase tracking-widest text-tung-500" aria-label="Breadcrumb">

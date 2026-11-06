@@ -14,8 +14,8 @@ export const SITE = {
 };
 
 export const NAV = [
-  { label: 'Products', href: '/#products' },
-  { label: 'Applications', href: '/#applications' },
+  { label: 'Products', href: '/products/' },
+  { label: 'Applications', href: '/applications/' },
   { label: 'Factory', href: '/factory/' },
   { label: 'Guides', href: '/guides/' },
   { label: 'FAQ', href: '/faq/' },

@@ -1,0 +1,84 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import { SITE } from '../../config';
+import { applications } from '../../data/applications';
+
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url },
+    { '@type': 'ListItem', position: 2, name: 'Applications', item: `${SITE.url}/applications/` }
+  ]
+};
+
+const collectionLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Tungsten-Copper Electrode Applications',
+  description: 'Application guidance for seam welding, resistance welding, EDM, heat sinks and electrical contacts.',
+  url: `${SITE.url}/applications/`,
+  mainEntity: {
+    '@type': 'ItemList',
+    itemListElement: applications.map((application, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: application.name,
+      url: `${SITE.url}/applications/${application.slug}/`
+    }))
+  }
+};
+---
+
+<Base
+  title="Tungsten-Copper Electrode Applications | ArcTung"
+  description="Explore tungsten-copper applications in seam welding, resistance welding, EDM, heat sinks and electrical contacts, with grade and product guidance for each use."
+  jsonLd={[breadcrumbLd, collectionLd]}
+>
+  <section class="border-b border-steel-700/60 bg-steel-900">
+    <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20">
+      <nav class="rise flex items-center gap-2 font-mono text-[0.72rem] uppercase tracking-widest text-tung-500" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-copper-300">Home</a>
+        <span>/</span>
+        <span class="text-copper-300">Applications</span>
+      </nav>
+      <div class="mt-8">
+        <SectionHead
+          as="h1"
+          kicker="By application"
+          title="Choose tungsten-copper by the job it has to do"
+          lead="Each application page connects the operating problem to the grades and product formats already documented in the product data — without treating every welding, EDM or thermal-management job as the same case."
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-steel-950">
+    <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20">
+      <div class="grid gap-6 sm:grid-cols-2">
+        {applications.map((application) => (
+          <a href={`/applications/${application.slug}/`} class="group hairline block overflow-hidden rounded-sm bg-steel-900 transition-all hover:border-copper-500/60">
+            <div class="relative overflow-hidden">
+              <Image src={application.image} alt={application.imageAlt} width={760} height={420} class="h-48 w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+            </div>
+            <div class="p-6">
+              <p class="font-mono text-[0.72rem] uppercase tracking-[0.18em] text-copper-400">Application</p>
+              <h2 class="mt-3 font-display text-xl font-bold tracking-tight text-tung-50 transition-colors group-hover:text-copper-300">{application.name}</h2>
+              <p class="mt-3 text-sm leading-relaxed text-tung-300">{application.tagline}</p>
+              <p class="mt-5 flex items-center gap-2 font-mono text-[0.75rem] uppercase tracking-widest text-copper-400">View application →</p>
+            </div>
+          </a>
+        ))}
+      </div>
+      <div class="mt-14 border-t border-steel-700/60 pt-8">
+        <p class="max-w-3xl text-sm leading-relaxed text-tung-300">
+          Need a part rather than application guidance? Browse the
+          <a href="/products/" class="text-copper-300 underline underline-offset-4 hover:text-copper-200">product line</a>
+          or <a href="/contact/" class="text-copper-300 underline underline-offset-4 hover:text-copper-200">send a drawing for review</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+</Base>
