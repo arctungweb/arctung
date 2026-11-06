@@ -3,6 +3,8 @@ import { render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import { SITE } from '../../config';
 import { getCollection, type CollectionEntry } from 'astro:content';
+import { lastmodFor } from '../../../scripts/sitemap-lastmod.mjs';
+import lastmodMap from '../../../scripts/lastmod.json';
 
 export async function getStaticPaths() {
   const guides = await getCollection('guides');
@@ -16,13 +18,20 @@ const { guide } = Astro.props as { guide: CollectionEntry<'guides'> };
 const { Content } = await render(guide);
 const url = `${SITE.url}/guides/${guide.id}/`;
 
+// dateModified should agree with the sitemap lastmod for the same URL: one
+// freshness story across schema and sitemap, or Google picks whichever it
+// trusts less. Falls back to publication when history is unavailable.
+const lastmod = lastmodFor(lastmodMap, url) ?? guide.data.pubDate.toISOString().slice(0, 10);
+const modified = new Date(`${lastmod}T00:00:00Z`);
+const dateModified = modified > guide.data.pubDate ? modified : guide.data.pubDate;
+
 const articleLd = {
   '@context': 'https://schema.org',
   '@type': 'Article',
   headline: guide.data.title,
   description: guide.data.description,
   datePublished: guide.data.pubDate.toISOString(),
-  dateModified: guide.data.pubDate.toISOString(),
+  dateModified: dateModified.toISOString(),
   author: { '@type': 'Organization', name: SITE.name, url: SITE.url },
   publisher: { '@type': 'Organization', name: SITE.name, url: SITE.url },
   image: [`${SITE.url}/og/og-default.png`],
