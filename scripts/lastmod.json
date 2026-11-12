@@ -21,7 +21,7 @@
   "src/components/InquiryForm.astro": "2026-09-28",
   "src/components/ProductCard.astro": "2026-10-30",
   "src/components/SectionHead.astro": "2026-09-30",
-  "src/components/SiteFooter.astro": "2026-11-06",
+  "src/components/SiteFooter.astro": "2026-11-12",
   "src/components/SiteHeader.astro": "2026-10-30",
   "src/components/SpecTable.astro": "2026-09-28",
   "src/config.ts": "2026-11-06",
@@ -64,7 +64,7 @@
   "src/pages/index.astro": "2026-11-06",
   "src/pages/products/[slug].astro": "2026-11-06",
   "src/pages/products/index.astro": "2026-11-06",
-  "src/pages/tools/electrode-weight-calculator.astro": "2026-11-06",
+  "src/pages/tools/electrode-weight-calculator.astro": "2026-11-12",
   "src/styles/global.css": "2026-11-06",
   "src/worker.ts": "2026-09-29"
 }
