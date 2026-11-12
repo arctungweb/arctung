@@ -3,15 +3,10 @@ import Base from '../../layouts/Base.astro';
 import SectionHead from '../../components/SectionHead.astro';
 import { SITE } from '../../config';
 
-const densities: Record<string, number> = {
-  '75/25': 15.2, // g/cm³, typical — see /faq
-  '70/30': 14.5
-};
-
 const faqs: [string, string][] = [
   [
     'How accurate is this weight calculator?',
-    'It uses the typical densities for our grades (W/Cu 75/25 ≈ 15.2 g/cm³, W/Cu 70/30 ≈ 14.5 g/cm³) and nominal dimensions. Real parts are machined to your drawing: bore bores out material, edge profiles remove a little more. Expect finished weight within roughly 5% of the calculated value — the quotation sheet gives exact figures.'
+    'It multiplies nominal volume by the selected density. For W/Cu, the presets use our typical grade values (75/25 ≈ 15.2 g/cm³ and 70/30 ≈ 14.5 g/cm³). For tungsten carbide or cemented carbide, enter the density stated for the specific grade by its manufacturer or material certificate. Bores, profiles, chamfers and other removed material must be deducted for a finished-part estimate.'
   ],
   [
     'Why does weight matter for pricing?',
@@ -22,12 +17,12 @@ const faqs: [string, string][] = [
     'Quotes are held for 7 days and follow the tungsten market, so we do not publish a fixed $/kg. Send the calculated weight with your drawing via the contact page and you will have a formal quotation — FOB Shenzhen/Nansha — within one business day.'
   ],
   [
-    'Can I use this for tungsten carbide or pure tungsten?',
-    'Yes for estimating. The material dropdown carries reference densities for pure tungsten (19.25 g/cm³), monolithic tungsten carbide (15.6), a 10% cobalt carbide grade (14.5) and a 90 W heavy alloy (17.0). The geometry and the arithmetic are identical — only the density changes. We machine W/Cu 75/25 and 70/30 only, so a carbide figure is a comparison, not something we can quote.'
+    'Can I use this as a carbide weight calculator?',
+    'Yes. The wheel, rod and block geometry is the same for tungsten carbide and cemented carbide; only the density input changes. Select the carbide/custom option and enter the density for your exact grade from its supplier datasheet or material certificate. Binder type and content affect cemented-carbide density, so this page does not assume one universal carbide value. ArcTung supplies W/Cu 75/25 and 70/30, not carbide.'
   ],
   [
-    'How much does tungsten weigh per cubic inch?',
-    'Pure tungsten is 0.695 lb/in³; W/Cu 75/25 is 0.549; W/Cu 70/30 is 0.524; monolithic tungsten carbide is 0.564. Multiply by the part volume in cubic inches. Converting from a metric drawing first is usually safer — 1 in³ = 16.387 cm³ — because a small diameter error compounds three times in a volume.'
+    'Can I calculate from a density in lb/in³?',
+    'The custom field takes g/cm³. Convert the grade density from lb/in³ by multiplying it by 27.6799, then enter the result. Use the value from the carbide grade supplier rather than a generic web table.'
   ],
   [
     'The drawing gives me a volume, not dimensions. What now?',
@@ -48,9 +43,9 @@ const faqLd = {
 const appLd = {
   '@context': 'https://schema.org',
   '@type': 'WebApplication',
-  name: 'Tungsten Weight Calculator (CuW, Carbide, Pure Tungsten)',
+  name: 'Carbide Weight Calculator and Tungsten Copper Weight Calculator',
   url: `${SITE.url}/tools/electrode-weight-calculator/`,
-  description: 'Estimate the weight of tungsten-copper, pure tungsten, tungsten carbide and molybdenum wheels, rods and blocks from nominal dimensions.',
+  description: 'Estimate tungsten-copper parts with ArcTung grade presets, or use the same geometry as a carbide weight calculator with a grade-specific density input.',
   applicationCategory: 'UtilityApplication',
   operatingSystem: 'Web',
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
@@ -59,16 +54,16 @@ const appLd = {
 ---
 
 <Base
-  title="Tungsten Weight Calculator — CuW, Carbide and Pure Tungsten"
-  description="Work out the weight of tungsten copper, pure tungsten, tungsten carbide or molybdenum parts — wheels, rods and blocks — from dimensions and density."
+  title="Carbide Weight Calculator + Tungsten Copper"
+  description="Carbide weight calculator for wheels, rods and blocks. Enter the density for your cemented-carbide grade, or use ArcTung's tungsten-copper presets."
   jsonLd={[faqLd, appLd]}
 >
   <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-24">
     <SectionHead
       as="h1"
       kicker="Free tool"
-      title="Tungsten weight calculator"
-      lead="Estimate the weight of W/Cu 75/25 or 70/30 electrode wheels, rods and blocks — or check a reference material like pure tungsten, tungsten carbide or molybdenum — before you request a quote. Nominal dimensions, typical densities, no signup."
+      title="Carbide weight calculator — plus tungsten copper"
+      lead="Calculate wheels, rods and blocks from dimensions and density. Use our typical W/Cu 75/25 or 70/30 values for tungsten-copper electrode estimates; for tungsten carbide or cemented carbide, enter the density published for your exact grade."
     />
 
     <div class="grid gap-12 lg:grid-cols-5">
@@ -90,18 +85,19 @@ const appLd = {
                   <option value="15.2">W/Cu 75/25 — 15.2 g/cm³</option>
                   <option value="14.5">W/Cu 70/30 — 14.5 g/cm³</option>
                 </optgroup>
-                <optgroup label="Reference materials — not stocked">
-                  <option value="19.25">Pure tungsten — 19.25 g/cm³</option>
-                  <option value="15.6">Tungsten carbide (WC) — 15.6 g/cm³</option>
-                  <option value="14.5">WC-Co, 10% binder — 14.5 g/cm³</option>
-                  <option value="17.0">Tungsten heavy alloy, 90 W — 17.0 g/cm³</option>
-                  <option value="10.2">Molybdenum — 10.2 g/cm³</option>
-                  <option value="8.96">Copper, ETP — 8.96 g/cm³</option>
-                  <option value="2.70">Aluminium 6061 — 2.70 g/cm³</option>
+                <optgroup label="Use your grade density">
+                  <option value="custom">Tungsten carbide / cemented carbide — custom density</option>
+                  <option value="custom">Other material — custom density</option>
                 </optgroup>
               </select>
             </label>
           </div>
+
+          <label id="custom-density-field" class="mt-5 hidden block text-sm text-tung-300">
+            Grade density (g/cm³)
+            <input id="custom-density" type="number" min="0.01" step="0.01" inputmode="decimal" placeholder="Enter the value from the grade datasheet" class="mt-1.5 w-full rounded-sm border border-steel-700 bg-steel-950 px-3 py-2.5 text-tung-50" />
+            <span class="mt-2 block text-xs leading-relaxed text-tung-500">Cemented-carbide density varies by grade and binder system. Use the value on the supplier datasheet or material certificate; the calculator does not substitute a generic carbide density.</span>
+          </label>
 
           <div id="wheel-fields" class="mt-5 grid gap-5 sm:grid-cols-2">
             <label class="block text-sm text-tung-300">
@@ -144,6 +140,7 @@ const appLd = {
             <p class="font-mono text-[0.72rem] uppercase tracking-widest text-tung-500">Estimated finished weight</p>
             <p class="mt-2 font-display text-4xl font-bold text-copper-300"><span id="result-kg">0.00</span> <span class="text-xl text-tung-300">kg</span></p>
             <p class="mt-1 text-sm text-tung-500"><span id="result-g">0</span> g · volume <span id="result-vol">0</span> cm³</p>
+            <p id="density-note" class="mt-2 text-xs text-tung-500">Using the typical W/Cu 75/25 density of 15.2 g/cm³.</p>
             <p id="break-note" class="mt-3 hidden text-sm text-copper-300">Batch over 20 kg — this crosses our first volume-break tier.</p>
           </div>
         </div>
@@ -152,8 +149,8 @@ const appLd = {
           <p class="font-mono text-[0.72rem] uppercase tracking-widest text-tung-500">How it works</p>
           <ul class="mt-4 space-y-2.5 text-sm leading-relaxed text-tung-300">
             <li>· Nominal dimensions × typical grade density (75/25 ≈ 15.2 g/cm³, 70/30 ≈ 14.5 g/cm³ — see <a class="text-copper-300 hover:text-copper-200" href="/faq/">FAQ specs</a>).</li>
-            <li>· The reference materials in the dropdown are there so you can weigh a mating part or a competing material. We machine W/Cu only — a pure tungsten or carbide figure is an estimate, not a quote.</li>
-            <li>· Machined features (bore, edge profiles) remove material, so finished parts typically come in about 5% under the calculated figure.</li>
+            <li>· For a carbide weight calculation, choose the custom option and enter the density for the named carbide grade. The geometry calculation does not change.</li>
+            <li>· Machined features such as bores, edge profiles and chamfers remove material. Deduct those volumes or treat the solid-shape result as an upper estimate.</li>
             <li>· For quotation-exact weights, send us the drawing — <a class="text-copper-300 hover:text-copper-200" href="/contact/">formal quote within one business day</a>.</li>
           </ul>
         </div>
@@ -271,8 +268,8 @@ const appLd = {
       <SectionHead
         as="h2"
         kicker="Density table"
-        title="Density by material, in g/cm³ and lb/in³"
-        lead="Same numbers the dropdown uses. Handy when a drawing gives you a volume, or when you are pricing an inch-dimension part and only have a pounds-per-cubic-inch figure."
+        title="Density inputs: copper tungsten and carbide"
+        lead="The W/Cu values below are ArcTung's typical grade inputs. Carbide is different: use the density attached to the exact tungsten-carbide or cemented-carbide grade you are calculating."
       />
 
       <div class="mt-10 grid gap-12 lg:grid-cols-2">
@@ -289,17 +286,11 @@ const appLd = {
             <tbody class="text-tung-300">
               <tr class="border-b border-steel-800/60"><td class="py-2.5 pr-4">W/Cu 75/25</td><td class="py-2.5 pr-4">15.2</td><td class="py-2.5 pr-4">0.549</td><td class="py-2.5">Stocked</td></tr>
               <tr class="border-b border-steel-800/60"><td class="py-2.5 pr-4">W/Cu 70/30</td><td class="py-2.5 pr-4">14.5</td><td class="py-2.5 pr-4">0.524</td><td class="py-2.5">Stocked</td></tr>
-              <tr class="border-b border-steel-800/60"><td class="py-2.5 pr-4">Pure tungsten</td><td class="py-2.5 pr-4">19.25</td><td class="py-2.5 pr-4">0.695</td><td class="py-2.5">Wrought, 99.95%</td></tr>
-              <tr class="border-b border-steel-800/60"><td class="py-2.5 pr-4">Tungsten carbide (WC)</td><td class="py-2.5 pr-4">15.6</td><td class="py-2.5 pr-4">0.564</td><td class="py-2.5">Monolithic, no binder</td></tr>
-              <tr class="border-b border-steel-800/60"><td class="py-2.5 pr-4">WC-Co, 10% binder</td><td class="py-2.5 pr-4">14.5</td><td class="py-2.5 pr-4">0.524</td><td class="py-2.5">Common tooling grade</td></tr>
-              <tr class="border-b border-steel-800/60"><td class="py-2.5 pr-4">Tungsten heavy alloy, 90 W</td><td class="py-2.5 pr-4">17.0</td><td class="py-2.5 pr-4">0.614</td><td class="py-2.5">W-Ni-Fe class</td></tr>
-              <tr class="border-b border-steel-800/60"><td class="py-2.5 pr-4">Molybdenum</td><td class="py-2.5 pr-4">10.2</td><td class="py-2.5 pr-4">0.368</td><td class="py-2.5">Pure, sintered or wrought</td></tr>
-              <tr class="border-b border-steel-800/60"><td class="py-2.5 pr-4">Copper, ETP</td><td class="py-2.5 pr-4">8.96</td><td class="py-2.5 pr-4">0.324</td><td class="py-2.5">Reference only</td></tr>
-              <tr><td class="py-2.5 pr-4">Aluminium 6061</td><td class="py-2.5 pr-4">2.70</td><td class="py-2.5 pr-4">0.098</td><td class="py-2.5">Reference only</td></tr>
+              <tr><td class="py-2.5 pr-4">Tungsten carbide / cemented carbide</td><td class="py-2.5 pr-4">Enter grade value</td><td class="py-2.5 pr-4">Convert if needed</td><td class="py-2.5">Supplier-specific input</td></tr>
             </tbody>
           </table>
           <p class="mt-4 text-sm leading-relaxed text-tung-400">
-            Infiltrated CuW density shifts with the tungsten skeleton, so treat these as typical values. A per-batch density report ships with the material on request.
+            Infiltrated CuW density shifts with composition and porosity, so treat the stocked-grade figures as typical values. A per-batch density report ships with ArcTung material on request. For carbide, use the value published for the specific grade and binder system.
           </p>
         </div>
 
@@ -352,6 +343,7 @@ const appLd = {
     const $ = (id: string) => document.getElementById(id);
     const shape = $('shape') as HTMLSelectElement;
     const grade = $('grade') as HTMLSelectElement;
+    const customDensity = $('custom-density') as HTMLInputElement;
     const fields: Record<string, string[]> = {
       wheel: ['wheel-fields'],
       rod: ['rod-fields'],
@@ -380,17 +372,24 @@ const appLd = {
     function update() {
       Object.entries(fields).forEach(([k, ids]) =>
         ids.forEach((id) => $(id).classList.toggle('hidden', k !== shape.value)));
-      g = parseFloat(grade.value);
+      const isCustom = grade.value === 'custom';
+      $('custom-density-field').classList.toggle('hidden', !isCustom);
+      g = isCustom ? parseFloat(customDensity.value) || 0 : parseFloat(grade.value);
       v = volumeCm3();
       kg = (v * g) / 1000;
       $('result-kg').textContent = kg.toFixed(2);
       $('result-g').textContent = Math.round(kg * 1000).toLocaleString('en-US');
       $('result-vol').textContent = v.toFixed(1);
       $('break-note').classList.toggle('hidden', kg < 20);
+      $('density-note').textContent = isCustom
+        ? g > 0
+          ? `Using your grade density of ${g.toFixed(2)} g/cm³.`
+          : 'Enter the density from the carbide grade datasheet or material certificate.'
+        : `Using the typical ${grade.options[grade.selectedIndex].text.split(' — ')[0]} density of ${g.toFixed(1)} g/cm³.`;
     }
 
     [shape, grade].forEach((el) => el.addEventListener('change', update));
-    ['wheel-od', 'wheel-th', 'rod-d', 'rod-l', 'blk-l', 'blk-w', 'blk-h'].forEach((id) =>
+    ['wheel-od', 'wheel-th', 'rod-d', 'rod-l', 'blk-l', 'blk-w', 'blk-h', 'custom-density'].forEach((id) =>
       $(id).addEventListener('input', update));
     update();
   </script>
