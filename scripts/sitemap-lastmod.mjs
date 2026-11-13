@@ -20,13 +20,15 @@ export function sourcesFor(pathname) {
   const p = pathname.replace(/\/+$/, '');
   const out = [];
 
-  if (p === '') out.push('src/pages/index.astro');
+  if (p === '') out.push('src/pages/index.astro', 'src/data/products.ts', 'src/data/applications.ts');
   else out.push(`src/pages${p}.astro`, `src/pages${p}/index.astro`);
 
   const guide = p.match(GUIDE);
-  if (guide) out.push(`src/content/guides/${guide[1]}.md`);
-  if (PRODUCT.test(p)) out.push('src/data/products.ts');
-  if (APPLICATION.test(p)) out.push('src/data/applications.ts');
+  if (guide) out.push('src/pages/guides/[slug].astro', `src/content/guides/${guide[1]}.md`);
+  if (PRODUCT.test(p)) out.push('src/pages/products/[slug].astro', 'src/data/products.ts');
+  if (APPLICATION.test(p)) out.push('src/pages/applications/[slug].astro', 'src/data/applications.ts');
+  if (p === '/products') out.push('src/data/products.ts');
+  if (p === '/applications') out.push('src/data/applications.ts');
 
   return out;
 }
@@ -39,8 +41,18 @@ export function lastmodFor(map, url) {
     return undefined;
   }
 
+  const files = sourcesFor(pathname);
+  const p = pathname.replace(/\/+$/, '');
+
+  // The home page and guide index render collection-derived counts/lists. A
+  // new or edited guide therefore changes those pages even though Astro has no
+  // single source file representing the collection.
+  if (p === '' || p === '/guides') {
+    files.push(...Object.keys(map).filter((file) => file.startsWith('src/content/guides/')));
+  }
+
   let newest = '';
-  for (const file of sourcesFor(pathname)) {
+  for (const file of files) {
     const date = map[file];
     if (date && date > newest) newest = date;
   }

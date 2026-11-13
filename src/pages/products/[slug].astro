@@ -16,17 +16,23 @@ export function getStaticPaths() {
 
 const { product } = Astro.props as { product: Product };
 const others = products.filter((p) => p.slug !== product.slug).slice(0, 3);
+const spec = (label: string) => product.specs.find((row) => row.label === label)?.value;
+const leadTime = spec('Lead time');
+const moq = spec('MOQ');
+const productSummary = [product.tagline, leadTime && `Lead time ${leadTime}`, moq && `MOQ ${moq}`]
+  .filter(Boolean)
+  .join('. ');
 
 const productLd = {
   '@context': 'https://schema.org',
   '@type': 'Product',
   name: product.name,
-  description: `${product.tagline}. ${product.alloyNote}. Max OD 400 mm, tolerances to runout 0.02 mm, factory-direct from China with no MOQ.`,
+  description: productSummary,
   image: [new URL(product.image.src, SITE.url).href],
   url: `${SITE.url}/products/${product.slug}/`,
   sku: product.slug,
   brand: { '@type': 'Brand', name: 'ArcTung' },
-  category: 'Resistance welding consumables',
+  category: 'Tungsten copper industrial components',
   material: product.alloy
 };
 
@@ -43,7 +49,7 @@ const breadcrumbLd = {
 
 <Base
   title={`${product.name} | ${product.alloy} — ArcTung`}
-  description={`${product.tagline}. ${product.alloyNote}. Max OD 400 mm, lead time ${SITE.leadStandard}, no MOQ, FOB Shenzhen.`}
+  description={productSummary}
   jsonLd={[productLd, breadcrumbLd]}
 >
   <!-- HERO -->
@@ -73,7 +79,7 @@ const breadcrumbLd = {
             </a>
           </div>
           <p class="rise d5 mt-5 font-mono text-[0.75rem] uppercase tracking-widest text-tung-500">
-            {product.alloyNote} · No MOQ · Lead time {SITE.leadStandard}
+            {[product.alloyNote, moq && `MOQ: ${moq}`, leadTime && `Lead time: ${leadTime}`].filter(Boolean).join(' · ')}
           </p>
         </div>
         <figure class="rise d3 hairline overflow-hidden rounded-sm">

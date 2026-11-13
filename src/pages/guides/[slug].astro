@@ -32,8 +32,8 @@ const articleLd = {
   description: guide.data.description,
   datePublished: guide.data.pubDate.toISOString(),
   dateModified: dateModified.toISOString(),
-  author: { '@type': 'Organization', name: SITE.name, url: SITE.url },
-  publisher: { '@type': 'Organization', name: SITE.name, url: SITE.url },
+  author: { '@id': `${SITE.url}/#organization` },
+  publisher: { '@id': `${SITE.url}/#organization` },
   image: [`${SITE.url}/og/og-default.png`],
   mainEntityOfPage: url
 };
