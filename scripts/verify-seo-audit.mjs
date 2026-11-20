@@ -11,7 +11,23 @@ const match = (html, re, label) => {
 
 const sitemap = read('dist/sitemap-0.xml');
 const sitemapCount = (sitemap.match(/<loc>/g) || []).length;
-if (sitemapCount !== 40) throw new Error(`Expected 40 sitemap URLs, got ${sitemapCount}`);
+const indexableHtml = [];
+const walk = (dir) => {
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const path = `${dir}/${entry.name}`;
+    if (entry.isDirectory()) walk(path);
+    else if (entry.name === 'index.html' && !read(path).includes('noindex')) indexableHtml.push(path);
+  }
+};
+walk('dist');
+if (sitemapCount !== indexableHtml.length) {
+  throw new Error(`Sitemap has ${sitemapCount} URLs but dist has ${indexableHtml.length} indexable pages`);
+}
+
+const lastmodMap = JSON.parse(read('scripts/lastmod.json'));
+const guideFiles = fs.readdirSync('src/content/guides').filter((name) => name.endsWith('.md'));
+const guidesMissingLastmod = guideFiles.filter((name) => !lastmodMap[`src/content/guides/${name}`]);
+if (guidesMissingLastmod.length) throw new Error(`Guides missing lastmod: ${guidesMissingLastmod.join(', ')}`);
 
 const redirects = read('dist/_redirects').split('\n').filter(Boolean);
 const badRedirects = redirects.filter((line) => {

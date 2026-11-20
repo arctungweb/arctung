@@ -289,6 +289,11 @@ const furtherReading: Record<string, FurtherReading[]> = {
       note: 'Conductivity, CTE and hardness by grade, plus the substrate-matching table.'
     },
     {
+      label: 'Designing copper tungsten heat sinks',
+      href: '/guides/copper-tungsten-heat-sink-design/',
+      note: 'A geometry-first workflow for spreading resistance, interfaces and grade selection.'
+    },
+    {
       label: 'Copper tungsten CTE and thermal expansion',
       href: '/guides/tungsten-copper-thermal-expansion/',
       note: 'Why expansion, not conductivity, causes most solder-joint failures in service.'

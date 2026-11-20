@@ -404,6 +404,11 @@ const furtherReading: Record<string, FurtherReading[]> = {
   ],
   'custom-parts': [
     {
+      label: 'Designing copper tungsten heat sinks',
+      href: '/guides/copper-tungsten-heat-sink-design/',
+      note: 'Geometry, interfaces and grade choices for custom thermal-management parts.'
+    },
+    {
       label: 'Ordering custom electrode wheels and parts',
       href: '/guides/how-to-order-custom-electrode-wheels/',
       note: 'What a complete drawing package looks like, and what happens after you send it.'

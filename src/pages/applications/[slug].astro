@@ -46,6 +46,10 @@ const metaDescription = `${application.tagline}. ${application.keyPoints[0][1]}`
   title={`${application.name} | ArcTung W/Cu Electrodes`}
   description={metaDescription}
   jsonLd={[pageLd, breadcrumbLd]}
+  ogImage={new URL(application.image.src, SITE.url).href}
+  ogImageAlt={application.imageAlt}
+  ogImageWidth={application.image.width}
+  ogImageHeight={application.image.height}
 >
   <!-- HERO -->
   <section class="relative overflow-hidden border-b border-steel-700/60">

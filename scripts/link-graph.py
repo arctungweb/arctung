@@ -33,6 +33,8 @@ def main() -> None:
 
     orphans = [s for s in slugs if not inbound[s]]
     print(f"\n{len(slugs)} guides, {len(orphans)} with zero inbound links")
+    if orphans:
+        raise SystemExit(1)
 
 
 if __name__ == "__main__":

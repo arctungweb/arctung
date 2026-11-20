@@ -30,7 +30,6 @@ const productLd = {
   description: productSummary,
   image: [new URL(product.image.src, SITE.url).href],
   url: `${SITE.url}/products/${product.slug}/`,
-  sku: product.slug,
   brand: { '@type': 'Brand', name: 'ArcTung' },
   category: 'Tungsten copper industrial components',
   material: product.alloy
@@ -51,6 +50,10 @@ const breadcrumbLd = {
   title={`${product.name} | ${product.alloy} — ArcTung`}
   description={productSummary}
   jsonLd={[productLd, breadcrumbLd]}
+  ogImage={new URL(product.image.src, SITE.url).href}
+  ogImageAlt={product.imageAlt}
+  ogImageWidth={product.image.width}
+  ogImageHeight={product.image.height}
 >
   <!-- HERO -->
   <section class="border-b border-steel-700/60 bg-steel-900">

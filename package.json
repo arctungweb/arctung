@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && node scripts/verify-seo-audit.mjs && python3 scripts/link-graph.py",
     "preview": "astro preview",
     "preview:worker": "astro build && wrangler dev",
     "astro": "astro",
