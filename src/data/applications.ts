@@ -230,6 +230,11 @@ const furtherReading: Record<string, FurtherReading[]> = {
   ],
   'resistance-welding-electrodes': [
     {
+      label: 'Projection welding electrode RFQ guide',
+      href: '/guides/projection-welding-electrode-rfq-guide/',
+      note: 'Face geometry, cooling passages, mounting interfaces and inspection records for a quote-ready drawing.'
+    },
+    {
       label: 'Resistance welding electrode alloys compared',
       href: '/guides/resistance-welding-electrode-alloys-overview/',
       note: 'CrZr, BeCu and W/Cu against the same six criteria, not against marketing copy.'

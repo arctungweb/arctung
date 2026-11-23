@@ -404,6 +404,11 @@ const furtherReading: Record<string, FurtherReading[]> = {
   ],
   'custom-parts': [
     {
+      label: 'Projection welding electrode RFQ guide',
+      href: '/guides/projection-welding-electrode-rfq-guide/',
+      note: 'How to define die facings, cooled holders, working faces and repeat-order controls.'
+    },
+    {
       label: 'Designing copper tungsten heat sinks',
       href: '/guides/copper-tungsten-heat-sink-design/',
       note: 'Geometry, interfaces and grade choices for custom thermal-management parts.'
